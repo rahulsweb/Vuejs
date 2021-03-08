@@ -18,6 +18,15 @@
         </button>
       </div>
     </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Download Multiple Files At a time</h5>
+        <p class="card-text">Books For Reading</p>
+        <button type="button" class="btn btn-primary" @click="downloadFiles">
+          Download Multiple Files
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -33,9 +42,35 @@ export default {
       console.log(page);
       page.print();
     },
-     redirect() {
-         this.$router.push({ path: "/print" });
+    redirect() {
+      this.$router.push({ path: "/print" });
+    },
+    downloadFiles(e) {
+      //      window.open('chanakya.pdf');
+      // window.open('a.txt');
 
+      e.preventDefault();
+      var filesForDownload = [
+        { path: "Test.txt", name: "file1.txt" },
+        { path: "chanakya.pdf", name: "chanakya.pdf" },
+         { path: "neeti.pdf", name: "neeti.pdf" },
+          { path: "english.pdf", name: "english.pdf" },
+           { path: "tense.docx", name: "tense.docx" },
+      ];
+
+      var temporaryDownloadLink = document.createElement("a");
+      temporaryDownloadLink.style.display = "none";
+
+      document.body.appendChild(temporaryDownloadLink);
+      for (var n = 0; n < filesForDownload.length; n++) {
+        var download = filesForDownload[n];
+        temporaryDownloadLink.setAttribute("href", download.path);
+        temporaryDownloadLink.setAttribute("download", download.name);
+
+        temporaryDownloadLink.click();
+      }
+
+      document.body.removeChild(temporaryDownloadLink);
     },
   },
 };

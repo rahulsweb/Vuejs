@@ -1,0 +1,14 @@
+
+
+Apr 16 2020 | Rahul | Review
+
+1)Worked on  poll pages button size increase 
+2)Worked on Add interstitial ads to AM pages - april
+AM-pages(Monday/Wednesday/Friday/Sunday)
+bm041720am.php,bm041920am.php,bm042020am.php,bm042220am.php,bm042420am.php,bm042620am.php,bm042720am.php,bm042920am.php
+3)2)Worked on Add interstitial ads to PM pages - april
+PM-pages(Tuesday/Thursday/Saturday)
+bm041620pm.php,bm041820pm.php,bm042120pm.php,bm042320pm.php,bm042520pm.php,bm042820pm.php,bm043020pm.php
+
+4)Worked on CMS template create new CMS template for AM and PM pages
+5)Test And deployment AM/PM/TRIVIA ,poll pages 
