@@ -12,8 +12,12 @@
     "jquery": "^3.6.0",
     "multi-download": "^3.0.0",
     "print-js": "^1.6.0",
+    "qrcode": "^1.4.4",
     "vue": "^2.6.11",
-    "vue-router": "^3.5.1"
+    "vue-qrcode": "^0.3.5",
+    "vue-qrcode-reader": "^3.0.0",
+    "vue-router": "^3.5.1",
+    "vue-select": "^3.11.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

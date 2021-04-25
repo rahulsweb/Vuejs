@@ -1,5 +1,14 @@
 <template>
   <div>
+       <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Scan QR code</h5>
+        <p class="card-text">Scan your code</p>
+        <button type="button" class="btn btn-primary" @click="scanQR">
+         Scan QR
+        </button>
+      </div>
+    </div>
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Chanakya Neeti</h5>
@@ -44,6 +53,9 @@ export default {
     },
     redirect() {
       this.$router.push({ path: "/print" });
+    },
+     scanQR() {
+      this.$router.push({ path: "/scan" });
     },
     downloadFiles(e) {
       //      window.open('chanakya.pdf');
