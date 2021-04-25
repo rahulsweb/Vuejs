@@ -1,19 +1,31 @@
 <template>
   <div class="container">
-     <div class="row ">
+       <div class="row ml-2 mr-2" >
+           <div class="card">
+     
+     
+        <button type="button" class="btn btn-primary" @click="redirectHome">
+         Home
+        </button>
+     
+
+    </div>
+     </div>
+     <br>
+     <div class="row mt-1 ml-2 mr-2">
            <div class="card col-md-6 offset-md-3 offset-lg-3 col-lg-6 col-sm-12 col-xs-12">
       <div class="card-body">
         <h5 class="card-title">Sample QR code</h5>
-        <p class="card-text">Click here for scan QR code</p>
+        <p class="card-text "><b class="text-danger">Note:Allow Camera permision in Chrome browser site setting for this site if camera is not open.</b></p>
         <button type="button" class="btn btn-primary" @click="redirect">
           Click Here
         </button>
       </div>
     </div>
      </div>
-      <div class="row ">
+      <div class="row mt-1 ml-2 mr-2">
    
-    <div class="col-md-6 offset-md-3 offset-lg-3 col-lg-6 col-sm-12 col-xs-12 ">
+    <div class="col-md-6 offset-md-3 offset-lg-3 col-lg-6 col-sm-12 col-xs-12 mt-1">
     <p>
      <b> Track function:</b>
       <!-- <select class="form-select" aria-label="Default select example" v-model="selected">
@@ -53,7 +65,7 @@ export default {
       { text: "centered text", value: this.paintCenterText },
       { text: "bounding box", value: this.paintBoundingBox },
       ],
-      selected:{ text: "outline", value: this.paintOutline },
+      selected:  { text: "centered text", value: this.paintCenterText },
     }
   
   },
@@ -113,6 +125,9 @@ export default {
     },
      redirect() {
       this.$router.push({ path: "/code" });
+    },
+      redirectHome() {
+      this.$router.push({ path: "/" });
     },
   }
 
