@@ -2,7 +2,7 @@
   <div>
        <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Scan QR code</h5>
+        <h5 class="card-title">Scan QR code<sup class="ml-1 bx-20 radius "><b class="text-light bg-danger">New</b></sup></h5>
         <p class="card-text">Scan your code</p>
         <button type="button" class="btn btn-primary" @click="scanQR">
          Scan QR
@@ -87,4 +87,8 @@ export default {
   },
 };
 </script>
-<style lang="stylus" scoped></style>
+<style scoped>
+.radius{
+  border-radius :15px;
+}
+</style>
