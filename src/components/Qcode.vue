@@ -8,7 +8,7 @@
          Back
         </button>
       </div>
-    <vue-qrcode value="https://www.1stg.me" />
+    <vue-qrcode value="https://rahuls7.netlify.app" />
 
     </div>
      </div>
