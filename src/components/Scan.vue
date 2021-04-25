@@ -40,8 +40,10 @@
     </div>
   
   </div>
-      
-    <qrcode-stream :torch="true" :key="_uid" :track="selected.value" @init="logErrors"  @detect="onDetect"/>
+         <button type="button"  :class="[on ? activeClass : offClass ]" @click="on=!on">
+          <strong>Torch -: {{torch}}</strong>
+        </button>
+    <qrcode-stream :torch="on" :key="_uid" :track="selected.value" @init="logErrors"  @detect="onDetect"/>
   </div>
 </template>
 
@@ -65,11 +67,22 @@ export default {
       { text: "centered text", value: this.paintCenterText },
       { text: "bounding box", value: this.paintBoundingBox },
       ],
+      on:true,
+     
+       activeClass: 'btn btn-success',
+        offClass: 'btn btn-danger',
       selected:  { text: "centered text", value: this.paintCenterText },
     }
   
   },
 
+computed:{
+  torch(){
+    if(!this.on)
+      return "Off";
+      return "On";
+  }
+},
   methods: {
    
     paintOutline (detectedCodes, ctx) {
