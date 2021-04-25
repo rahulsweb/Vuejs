@@ -8,7 +8,8 @@
          Back
         </button>
       </div>
-    <vue-qrcode value="https://rahuls7.netlify.app" />
+
+      <vue-qrcode value="https://rahuls7.netlify.app" tag="svg" :options="{ width: 148,type:'image/png',maskPattern:7,quality:1,color:{ dark: '#32a852', light: '#ffffffff' } }"></vue-qrcode>
 
     </div>
      </div>
@@ -23,7 +24,18 @@ export default {
   components: {
     VueQrcode,
   },
+  
   methods:{
+      scan(){
+          VueQrcode.toDataURL('I am a pony!')
+  .then(url => {
+    console.log(url)
+    alert(url)
+  })
+  .catch(err => {
+    console.error(err)
+  })
+      },
         redirect() {
       this.$router.push({ path: "/scan" });
     },
