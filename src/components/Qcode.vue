@@ -9,9 +9,16 @@
         </button>
       </div>
 
-      <vue-qrcode value="https://rahuls7.netlify.app" tag="svg" :options="{ width: 148,type:'image/png',maskPattern:7,quality:1,color:{ dark: '#32a852', light: '#ffffffff' } }"></vue-qrcode>
-
+  <vue-qrcode text="Rahul App" value="https://rahuls7.netlify.app" path="https://rahuls7.netlify.app" :options="{errorCorrectionLevel: 'H',
+  type: 'image/jpeg',
+  quality: 0.3,
+  margin: 1,
+  color: {
+    dark:'#010599FF',
+    light:'#FFBF60FF'
+  } }"></vue-qrcode>
     </div>
+    
      </div>
        
 

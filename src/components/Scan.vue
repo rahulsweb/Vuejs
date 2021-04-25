@@ -41,7 +41,7 @@
   
   </div>
       
-    <qrcode-stream :key="_uid" :track="selected.value" @init="logErrors" />
+    <qrcode-stream :torch="true" :key="_uid" :track="selected.value" @init="logErrors"  @detect="onDetect"/>
   </div>
 </template>
 
@@ -71,6 +71,7 @@ export default {
   },
 
   methods: {
+   
     paintOutline (detectedCodes, ctx) {
       for (const detectedCode of detectedCodes) {
         const [ firstPoint, ...otherPoints ] = detectedCode.cornerPoints
