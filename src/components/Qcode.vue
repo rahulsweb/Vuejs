@@ -7,9 +7,8 @@
         <button type="button" class="btn btn-primary" @click="redirect">
          Back
         </button>
-      </div>
-
-  <vue-qrcode text="Rahul App" value="https://rahuls7.netlify.app" path="https://rahuls7.netlify.app" :options="{errorCorrectionLevel: 'H',
+        <br>
+          <vue-qrcode text="Rahul App" value="https://rahuls7.netlify.app" path="https://rahuls7.netlify.app" :options="{errorCorrectionLevel: 'H',
   type: 'image/jpeg',
   quality: 0.3,
   margin: 1,
@@ -17,6 +16,9 @@
     dark:'#010599FF',
     light:'#FFBF60FF'
   } }"></vue-qrcode>
+      </div>
+
+
     </div>
     
      </div>
