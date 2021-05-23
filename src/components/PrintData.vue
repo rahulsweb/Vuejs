@@ -1,15 +1,38 @@
 <template>
-  <div>
-       <div class="card">
+<div class="container">
+  
+ <div class="row">
+
+       <div class="card col-md-6">
       <div class="card-body">
-        <h5 class="card-title">Scan QR code<sup class="ml-1 bx-20 radius "><b class="text-light bg-danger">New</b></sup></h5>
+        <h6 class="card-title"> Age Calculator<b-badge pill variant="danger" >new</b-badge></h6>
+        <p class="card-text">Age Calculator</p>
+        <button type="button" class="btn btn-primary" @click="age">
+        Calculate
+        </button>
+      </div>
+    </div>
+
+       <div class="card col-md-6">
+      <div class="card-body">
+        <h6 class="card-title"> Track Location<b-badge pill variant="warning" >Coming soon</b-badge></h6>
+        <p class="card-text">Scan your code</p>
+        <button type="button" class="btn btn-success text-light" >
+         Tracker
+        </button>
+      </div>
+    </div>
+   
+       <div class="card col-md-6">
+      <div class="card-body">
+        <h6 class="card-title"> QR code Scanner<b-badge pill variant="info" >new</b-badge></h6>
         <p class="card-text">Scan your code</p>
         <button type="button" class="btn btn-primary" @click="scanQR">
          Scan QR
         </button>
       </div>
     </div>
-    <div class="card">
+    <div class="card col-md-6">
       <div class="card-body">
         <h5 class="card-title">Chanakya Neeti</h5>
         <p class="card-text">Ebook For Reading</p>
@@ -18,7 +41,7 @@
         </button>
       </div>
     </div>
-    <div class="card">
+    <div class="card col-md-6">
       <div class="card-body">
         <h5 class="card-title">Chanakya Neeti</h5>
         <p class="card-text">Ebook For Reading</p>
@@ -27,7 +50,7 @@
         </button>
       </div>
     </div>
-    <div class="card">
+    <div class="card col-md-6">
       <div class="card-body">
         <h5 class="card-title">Download Multiple Files At a time</h5>
         <p class="card-text">Books For Reading</p>
@@ -37,6 +60,8 @@
       </div>
     </div>
   </div>
+</div>
+ 
 </template>
 <script>
 // import printJS from 'print-js';
@@ -53,6 +78,9 @@ export default {
     },
     redirect() {
       this.$router.push({ path: "/print" });
+    },
+    age() {
+      this.$router.push({ path: "/age" });
     },
      scanQR() {
       this.$router.push({ path: "/scan" });
