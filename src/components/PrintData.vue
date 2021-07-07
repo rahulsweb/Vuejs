@@ -59,6 +59,15 @@
         </button>
       </div>
     </div>
+        <div class="card col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Calendar</h5>
+        <p class="card-text">Calendar Cronofy</p>
+        <button type="button" class="btn btn-primary" @click="sync">
+        Calendar Sync
+        </button>
+      </div>
+    </div>
   </div>
 </div>
  
@@ -84,6 +93,9 @@ export default {
     },
      scanQR() {
       this.$router.push({ path: "/scan" });
+    },
+     sync() {
+      this.$router.push({ path: "/sync" });
     },
     downloadFiles(e) {
       //      window.open('chanakya.pdf');

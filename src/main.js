@@ -5,11 +5,41 @@ import PrintData from './components/PrintData'
 import Scan from './components/Scan'
 import Qcode from './components/Qcode'
 import Age from './components/Age'
-import VueRouter from 'vue-router'
+import Calendar from './components/Calendar'
+import VueRouter from 'vue-router';
 
+
+// Usage with Node.js
+// const { google, outlook, office365, yahoo, ics } = require("calendar-link");
+
+// Usage with TypeScript or ES6
+import { google, outlook, office365, yahoo, ics } from "calendar-link";
+
+// Set event as an object
+const event = {
+  title: "My birthday party",
+  description: "Be there!",
+  start: "2021-07-07 18:00:00 +0100",
+  duration: [3, "hour"],
+  url:"https://calendar.google.com/calendar/ical/rahulsonawanen%40gmail.com/public/basic.ics"
+};
+
+// Then fetch the link
+google(event); // https://calendar.google.com/calendar/render...
+outlook(event); // https://outlook.live.com/owa/...
+office365(event); // https://outlook.office.com/owa/...
+yahoo(event); // https://calendar.yahoo.com/?v=60&title=...
+ics(event); // standard ICS file based on https://icalendar.org
 Vue.use(VueRouter)
 // 
 
+// import GoogleAuth from '@/config/google.js'
+// const gauthOption = {
+//   clientId: '404149809856-huhpm4nrkdalfiq9772ob01ftck9qa2g.apps.googleusercontent.com',
+//   scope: 'profile email',
+//   prompt: 'select_account'
+// }
+// Vue.use(GoogleAuth, gauthOption)
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -38,6 +68,7 @@ const router = new VueRouter({
     { path: '/scan', name: 'foo', component: Scan },
     { path: '/code', name: 'foo', component: Qcode },
     { path: '/age', name: 'foo', component: Age },
+    { path: '/sync', name: 'sync', component: Calendar },
   ]
 })
 new Vue({
