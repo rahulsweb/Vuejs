@@ -17,7 +17,7 @@
             :options="options"
             button-variant="outline-info"
             size="lg"
-            class="col-4 mt-10 check"
+            class=" mt-10 check"
             name="radio-btn-outline"
             buttons
           ></b-form-radio-group>
@@ -30,7 +30,7 @@
         <button
           type="button"
           size="lg"
-          class="btn btn-danger ml-2"
+          class="btn btn-danger ml-2 pr-2"
           @click="reset"
         >
           Reset
