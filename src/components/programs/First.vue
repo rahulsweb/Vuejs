@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     add() {
-      if (this.trues.length < 8 && this.value != "")
+      if (this.trues.length < 8 && this.value !== "")
         this.trues.push(this.value);
       let arr = this.trues.filter((el) => {
         if (el) return el;
