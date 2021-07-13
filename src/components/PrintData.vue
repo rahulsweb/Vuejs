@@ -68,6 +68,16 @@
         </button>
       </div>
     </div>
+          <div class="card col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Message Send</h5>
+        <p class="card-text">Chatting</p>
+        <button type="button" class="btn btn-primary" @click="chatMessage">
+        Chat Message
+        </button>
+      </div>
+    </div>
+   
   </div>
 </div>
  
@@ -84,6 +94,12 @@ export default {
       var page = window.open("chanakya.pdf");
       console.log(page);
       page.print();
+    },
+    chatMessage(){
+       this.$router.push({ path: "/chat" });
+    },
+    listPrograms(){
+     this.$router.push({ path: "/list" });
     },
     redirect() {
       this.$router.push({ path: "/print" });

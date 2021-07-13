@@ -7,15 +7,21 @@
     <button v-if='authorized' class="btn btn-primary" @click="handleSignoutClick">Sign Out</button>
   </div>
   <hr>
-<div class="ml-5">
-
-</div>
-   <div v-if='authorized' class="card-body">
+<div v-if='authorized' class="row">
+     <div  class="card-body col-md-6 ">
       
-          <button  class="btn btn-primary" @click="addEvent">
+          <button  class="btn btn-primary float-right" @click="addEvent">
 Add Events
 </button>
       </div>
+        <div v-if='authorized' class="card-body col-md-6">
+      
+          <button  class="btn btn-primary float-left" @click="exportEvents">
+Export Events
+</button>
+      </div>
+</div>
+
          <div  v-if='authorized'  class="card-body">
         <p class="card-text">Events list</p>
          <button class="btn btn-primary" @click="getData">Get Data</button>
@@ -76,10 +82,18 @@ export default {
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES
       }).then(res => {
-        console.log("initClient",res)
+        console.log("initClient",res);
         // Listen for sign-in state changes.
         vm.api.auth2.getAuthInstance().isSignedIn.listen(vm.authorized);
       });
+    },
+      /**
+       * Print the summary and start datetime/date of the next ten events in
+       * the authorized user's calendar. If no events are found an
+       * appropriate message is printed.
+       */
+    exportEvents(){
+
     },
     /**
        * Print the summary and start datetime/date of the next ten events in

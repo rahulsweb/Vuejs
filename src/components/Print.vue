@@ -26,7 +26,7 @@ export default {
       page.print();
     },
     redirect() {
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: "/menu" });
     },
   },
 };

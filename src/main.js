@@ -6,8 +6,14 @@ import Scan from './components/Scan'
 import Qcode from './components/Qcode'
 import Age from './components/Age'
 import Calendar from './components/Calendar'
+import Chat from './components/Chat'; 
+import List from './components/List';
+import Menu from './components/Menu';
+import First from './components/programs/First';
 import VueRouter from 'vue-router';
+import VueCodeHighlight from 'vue-code-highlight';
 
+Vue.use(VueCodeHighlight) 
 
 // Usage with Node.js
 // const { google, outlook, office365, yahoo, ics } = require("calendar-link");
@@ -63,12 +69,16 @@ const router = new VueRouter({
    mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', name: 'home', component: PrintData },
+    { path: '/', name: 'home', component: Menu },
     { path: '/print', name: 'foo', component: Print },
     { path: '/scan', name: 'foo', component: Scan },
     { path: '/code', name: 'foo', component: Qcode },
     { path: '/age', name: 'foo', component: Age },
     { path: '/sync', name: 'sync', component: Calendar },
+    { path: '/chat', name: 'chat', component: Chat },
+    { path: '/list', name: 'list', component: List },
+    { path: '/menu', name: 'menu', component: PrintData },
+    { path: '/first', name: 'first', component: First },
   ]
 })
 new Vue({
