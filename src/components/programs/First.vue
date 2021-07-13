@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="vx-card col-8 offset-2 float-left">
-      <div class="row ">
+      <div class="row">
         <h2>How Much is True?</h2>
         <b-card bg-variant="dark" text-variant="white" title="Note">
           <b-card-text>
@@ -21,29 +21,28 @@
             name="radio-btn-outline"
             buttons
           ></b-form-radio-group>
-        
         </div>
       </div>
-      <div class="row offset-3 mt-3 ">
-            <button type="button" size="lg" class="btn btn-primary col-3 ml-5" @click="add">
-            Add
-          </button>
-          <button
-            type="button"
-            size="lg"
-            class="btn btn-danger ml-2 col-3"
-            @click="reset"
-          >
-            Reset
-          </button>
+      <div class="mt-3">
+        <button type="button" size="lg" class="btn btn-primary" @click="add">
+          Add
+        </button>
+        <button
+          type="button"
+          size="lg"
+          class="btn btn-danger ml-2"
+          @click="reset"
+        >
+          Reset
+        </button>
       </div>
-      <div class="row  mt-10" v-if="trues.length">
+      <div class="row mt-10" v-if="trues.length">
         <p class="mt-5">Your Array->{{ trues }}</p>
 
         <p class="mt-2">True ={{ count }}</p>
         <p class="mt-2">False ={{ trues.length - count }}</p>
       </div>
-      <div class="row  mt-10">
+      <div class="row mt-10">
         <b-card
           bg-variant="light"
           text-variant="dark"
