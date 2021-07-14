@@ -38,7 +38,7 @@
       </div>
       <div class="row mt-10" v-if="trues.length">
         <p class="mt-5">Your Array->{{ trues }}</p>
-
+  
         <p class="mt-2">True ={{ count }}</p>
         <p class="mt-2">False ={{ trues.length - count }}</p>
       </div>
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     add() {
-      if (this.trues.length < 8 && this.value != "")
+      if (this.trues.length < 8 && this.value !== "")
         this.trues.push(this.value);
       let arr = this.trues.filter((el) => {
         if (el) return el;

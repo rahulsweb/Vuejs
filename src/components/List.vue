@@ -1,13 +1,17 @@
 <template>
-  <div class="col-8 offset-2"> 
+  <div class="col-8 offset-2">
     <b-card header="Programming Questions">
-      <div  >
+      <div>
         <b-list-group>
-          <b-list-group-item v-for="(item, index) in items" :key="index">    <b-button variant="primary" @click="redirectPath(item.path)"  class="float-left">{{index+1}}
-</b-button>{{
-            item.title
-            
-          }}</b-list-group-item>
+          <b-list-group-item v-for="(item, index) in items" :key="index">
+            <hr>
+            <b-button
+              variant="primary"
+              @click="redirectPath(item.path)"
+              class="float-left"
+              >{{ index + 1 }} </b-button
+            >{{ item.title }}</b-list-group-item
+          >
         </b-list-group>
       </div>
     </b-card>
@@ -21,16 +25,21 @@ export default {
         {
           id: 1,
           title: "How Much is True ?",
-          path:"first"
+          path: "first",
+        },
+        {
+          id: 2,
+          title: "Single Occurence",
+          path: "two",
         },
       ],
     };
   },
-  methods:{
-    redirectPath(path){
-this.$router.push({ path: `/${path}` });
-    }
-  }
+  methods: {
+    redirectPath(path) {
+      this.$router.push({ path: `/${path}` });
+    },
+  },
 };
 </script>
 <style  scoped>

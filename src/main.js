@@ -10,6 +10,7 @@ import Chat from './components/Chat';
 import List from './components/List';
 import Menu from './components/Menu';
 import First from './components/programs/First';
+import Two from './components/programs/Two';
 import VueRouter from 'vue-router';
 import VueCodeHighlight from 'vue-code-highlight';
 
@@ -79,6 +80,7 @@ const router = new VueRouter({
     { path: '/list', name: 'list', component: List },
     { path: '/menu', name: 'menu', component: PrintData },
     { path: '/first', name: 'first', component: First },
+    { path: '/two', name: 'two', component: Two },
   ]
 })
 new Vue({
