@@ -3,34 +3,6 @@
       <router-view/>
   </div>
 </template>
-<script>
-import { CometChat } from "@cometchat-pro/chat";
-export default {
-  created(){
-   this.initializeComet()
-  },
-    methods: {
-      initializeComet(){
-        const APP_ID= '190982c755b37890';
-            const REGION= 'us';
-            const appSetting = new CometChat.AppSettingsBuilder()
-              .subscribePresenceForAllUsers()
-              .setRegion(REGION)
-              .build();
-            CometChat.init(APP_ID, appSetting).then(
-              () => {
-                console.log('Initialization completed successfully');
-                // You can now call login function.
-              },
-              (error) => {
-                console.log('Initialization failed with error:', error);
-                // Check the reason for error and take appropriate action.
-              }
-        );
-      }
-    }
-}
-</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
