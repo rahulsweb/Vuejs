@@ -6,15 +6,22 @@ import Scan from './components/Scan'
 import Qcode from './components/Qcode'
 import Age from './components/Age'
 import Calendar from './components/Calendar'
-import Chat from './components/Chat'; 
 import List from './components/List';
 import Menu from './components/Menu';
 import First from './components/programs/First';
 import Two from './components/programs/Two';
+import Three from './components/programs/Three';
+import Test from './components/programs/Test';
+import Bluetooth from './components/devices/Bluetooth';
+import ListDevices from './components/devices/List';
+import Chess from './components/games/Chess';
+import ListGames from './components/games/List';
+
 import VueRouter from 'vue-router';
 import VueCodeHighlight from 'vue-code-highlight';
 
 Vue.use(VueCodeHighlight) 
+
 
 // Usage with Node.js
 // const { google, outlook, office365, yahoo, ics } = require("calendar-link");
@@ -76,11 +83,17 @@ const router = new VueRouter({
     { path: '/code', name: 'foo', component: Qcode },
     { path: '/age', name: 'foo', component: Age },
     { path: '/sync', name: 'sync', component: Calendar },
-    { path: '/chat', name: 'chat', component: Chat },
     { path: '/list', name: 'list', component: List },
     { path: '/menu', name: 'menu', component: PrintData },
-    { path: '/first', name: 'first', component: First },
-    { path: '/two', name: 'two', component: Two },
+    { path: '/list/1', name: '1', component: First },
+    { path: '/list/2', name: '2', component: Two },
+    { path: '/list/3', name: '3', component: Three },
+     { path: '/test', name: 'test', component: Test },
+     { path: '/devices/bluetooth', name: 'bluetooth', component: Bluetooth },
+     { path: '/devices', name: 'devices-lists', component: ListDevices },
+     { path: '/games', name: 'games-lists', component: ListGames },
+     { path: '/games/chess', name: 'chess', component: Chess },
+  
   ]
 })
 new Vue({

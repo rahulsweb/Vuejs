@@ -68,15 +68,7 @@
         </button>
       </div>
     </div>
-          <div class="card col-md-6">
-      <div class="card-body">
-        <h5 class="card-title">Message Send</h5>
-        <p class="card-text">Chatting</p>
-        <button type="button" class="btn btn-primary" @click="chatMessage">
-        Chat Message
-        </button>
-      </div>
-    </div>
+        
    
   </div>
 </div>

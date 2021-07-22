@@ -7,7 +7,7 @@
             <hr>
             <b-button
               variant="primary"
-              @click="redirectPath(item.path)"
+              @click="redirectPath(index+1)"
               class="float-left"
               >{{ index + 1 }} </b-button
             >{{ item.title }}</b-list-group-item
@@ -25,19 +25,22 @@ export default {
         {
           id: 1,
           title: "How Much is True ?",
-          path: "first",
         },
         {
           id: 2,
           title: "Single Occurence",
-          path: "two",
         },
+           {
+          id: 3,
+          title: "A Redundant Function",
+        },
+
       ],
     };
   },
   methods: {
     redirectPath(path) {
-      this.$router.push({ path: `/${path}` });
+      this.$router.push({ path: `/list/${path}` });
     },
   },
 };
