@@ -65,6 +65,7 @@ import fire from "../../fire";
 export default {
   data() {
     return {
+      flag: false,
       userName: "",
       name: null,
       showMessage: "",
@@ -72,7 +73,7 @@ export default {
       activeClass: "text-light bg-dark  text-align-right",
       errorClass: "text-primary text-align-left",
       isActive: false,
-      track: require("@/assets/audio/speech.mp3"),
+      track: require("@/assets/audio/sent.mp3"),
     };
   },
   methods: {
@@ -96,6 +97,9 @@ export default {
     itemsRef.on("value", (snapshot) => {
       let data = snapshot.val();
       let messages = [];
+      let audio = new Audio(this.track); // path to file
+      if (this.flag) audio.play();
+      this.flag = true;
       Object.keys(data).forEach((key) => {
         messages.push({
           id: key,
