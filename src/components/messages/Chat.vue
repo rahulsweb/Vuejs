@@ -34,7 +34,6 @@
 
   
     </div>
-
     <!-- Chat section -->
     <div class="message-body " v-else>
 
@@ -48,8 +47,6 @@
           <h5 class="card-title">Welcome <b-badge pill variant="danger">{{name}}</b-badge></h5>
         </b-card-text>
       </b-card>
-
-    
       <div class="card">
         <div class="card-body">
           <div
@@ -82,6 +79,7 @@ export default {
       activeClass: "text-light bg-dark  text-align-right",
       errorClass: "text-primary text-align-left",
       isActive: false,
+      track:require("@/assets/audio/speech.mp3")
     };
   },
   methods: {
@@ -105,13 +103,17 @@ export default {
     itemsRef.on("value", (snapshot) => {
       let data = snapshot.val();
       let messages = [];
+        //  let audio = new Audio(this.track); // path to file
+        //     audio.play();
       Object.keys(data).forEach((key) => {
+    
         messages.push({
           id: key,
           username: data[key].username,
           text: data[key].text,
         });
       });
+      
       viewMessage.messages = messages;
     });
   },
@@ -185,6 +187,8 @@ input {
   height: 20vh !important;
 }
 .card-chat1{
-  height: 40vh !important;
+  height: 50vh !important;
+
 }
+
 </style>
