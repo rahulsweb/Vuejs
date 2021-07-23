@@ -16,7 +16,7 @@ import Bluetooth from './components/devices/Bluetooth';
 import ListDevices from './components/devices/List';
 import Chess from './components/games/Chess';
 import ListGames from './components/games/List';
-
+import Messages from './components/messages/Chat';
 import VueRouter from 'vue-router';
 import VueCodeHighlight from 'vue-code-highlight';
 
@@ -93,6 +93,8 @@ const router = new VueRouter({
      { path: '/devices', name: 'devices-lists', component: ListDevices },
      { path: '/games', name: 'games-lists', component: ListGames },
      { path: '/games/chess', name: 'chess', component: Chess },
+     { path: '/messages', name: 'message', component: Messages },
+
   
   ]
 })

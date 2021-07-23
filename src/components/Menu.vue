@@ -97,7 +97,7 @@ export default {
       this.$router.push({ path: "/games" });
     },
     redirectMessages() {
-      // this.$router.push({ path: "/message" });
+      this.$router.push({ path: "/messages" });
     },
   },
 };
