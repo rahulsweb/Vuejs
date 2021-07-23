@@ -56,7 +56,13 @@
         </div>
       </div>
       <input v-model="showMessage" type="text" class="mt-3 mr-2 pl-2 pr-2" />
-      <button class="btn btn-primary" @click="sendMessage">Send</button>
+      <button
+        class="btn btn-primary"
+        :disabled="!showMessage.length"
+        @click="sendMessage"
+      >
+        Send
+      </button>
     </div>
   </div>
 </template>
@@ -100,12 +106,15 @@ export default {
       let audio = new Audio(this.track); // path to file
       if (this.flag) audio.play();
       this.flag = true;
+
       Object.keys(data).forEach((key) => {
-        messages.push({
-          id: key,
-          username: data[key].username,
-          text: data[key].text,
-        });
+        if (data[key].text.length) {
+          messages.push({
+            id: key,
+            username: data[key].username,
+            text: data[key].text,
+          });
+        }
       });
 
       viewMessage.messages = messages;
@@ -139,7 +148,7 @@ input {
   padding-right: 2px;
 }
 .message-body {
-  width: 40%;
+  width: 80%;
   height: 80vh;
   margin: auto;
 }
