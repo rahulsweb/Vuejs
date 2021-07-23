@@ -2,7 +2,7 @@
 <template>
   <div>
     <!-- Login section -->
-    <div class="login" v-if="!name">
+    <div class="col-8 offset-2" v-if="!name">
       <b-card
         class="card-chat1"
         bg-variant="dark"
@@ -19,14 +19,15 @@
           class="text-success bg-light"
           :type="'text'"
           v-model="userName"
+          @keyup.enter="updateUsername"
         ></b-form-input>
-        <button type="button" class="btn btn-info mt-2" @click="updateUsername">
+        <button type="button" class="btn btn-info mt-2"  @click="updateUsername">
           Join Group
         </button>
       </b-card>
     </div>
     <!-- Chat section -->
-    <div class="message-body" v-else>
+    <div class="col-8 offset-2" v-else>
       <b-card
         class="card-chat"
         bg-variant="dark"
@@ -55,9 +56,9 @@
           </div>
         </div>
       </div>
-      <input v-model="showMessage" type="text" class="mt-3 mr-2 pl-2 pr-2" />
+      <input v-model="showMessage" type="text" class="mt-3 mr-2 pl-2 pr-2" @keyup.enter="sendMessage" />
       <button
-        class="btn btn-primary"
+        class="btn btn-primary mt-2"
         :disabled="!showMessage.length"
         @click="sendMessage"
       >
@@ -89,6 +90,8 @@ export default {
       this.userName = "";
     },
     sendMessage() {
+      if(this.showMessage.length==0)
+      return false;
       const message = {
         text: this.showMessage,
         username: this.name,
@@ -130,7 +133,7 @@ export default {
 }
 .login {
   background: #fff;
-  width: 40%;
+  width: 80%;
   height: 50vh;
   margin: auto;
   padding-left: 20px;
