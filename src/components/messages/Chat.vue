@@ -1,21 +1,55 @@
 
 <template>
-<div>
-   <!-- Login section -->
-   <div class="login mt-5" v-if="!name">
-    <h3 class="mt-5">Join Chat</h3>
-    <label for="username">userName</label>
-    <br />
-    <input class="mb-3" type="text" v-model="userName" />
-    <br />
-    <button class="btn btn-primary" @click="updateUsername">Join Chat</button>
-   </div>
-   
+  <div>
+    <!-- Login section -->
+    <div class="login" v-if="!name">
+        <b-card
+         class="card-chat1"
+        bg-variant="dark"
+        text-variant="info"
+        title="Join Group"
+      >
+        <b-card-text>
+          <h5 class="card-title">Welcome </h5>
+        </b-card-text>
+           <label 
+                  ><b>Enter Your Name</b>
+                </label>
+                <b-form-input
+                  :id="`name`"
+                  :state="true"
+                  class="text-success bg-light"
+                  :type="'text'"
+                 
+                  v-model="userName"
+                ></b-form-input>
+                 <button
+              type="button"
+              class="btn btn-info mt-2"
+              @click="updateUsername"
+            >
+            Join Group
+            </button>
+      </b-card>
 
-       <!-- Chat section -->
-    <div class="message-body mt-3" v-else>
-      <h3>Chat</h3>
-      <h5>Welcome {{ name }}!</h5>
+  
+    </div>
+
+    <!-- Chat section -->
+    <div class="message-body " v-else>
+
+        <b-card
+         class="card-chat"
+        bg-variant="dark"
+        text-variant="white"
+        title="Whats App Chatting Group"
+      >
+        <b-card-text>
+          <h5 class="card-title">Welcome <b-badge pill variant="danger">{{name}}</b-badge></h5>
+        </b-card-text>
+      </b-card>
+
+    
       <div class="card">
         <div class="card-body">
           <div
@@ -23,16 +57,18 @@
             v-for="message in messages"
             :key="message"
           >
-            <span class="mg-text">{{ message.username }}</span>
-            <p class="message pt-1">{{ message.text }}</p>
+          <div  :class="[message.username == name ? activeClass : '', errorClass]" >
+             <span class="mg-text mr-2 ml-2">{{ message.username }}</span>
+            <p class="message pt-1 mr-2 ml-2">{{ message.text }}</p>
+          </div>
+        
           </div>
         </div>
       </div>
-      <input v-model="showMessage" type="text" class="mt-3 mr-2 pl-2 pr-2" />
+      <input v-model="showMessage" type="text" class="mt-3 mr-2 pl-2 pr-2 " />
       <button class="btn btn-primary" @click="sendMessage">Send</button>
     </div>
-    </div>
-
+  </div>
 </template>
 <script>
 import fire from "../../fire";
@@ -42,7 +78,10 @@ export default {
       userName: "",
       name: null,
       showMessage: "",
-      messages: []
+      messages: [],
+      activeClass: "text-light bg-dark  text-align-right",
+      errorClass: "text-primary text-align-left",
+      isActive: false,
     };
   },
   methods: {
@@ -54,32 +93,29 @@ export default {
     sendMessage() {
       const message = {
         text: this.showMessage,
-        username: this.name
+        username: this.name,
       };
-      fire
-        .database()
-        .ref("messages")
-        .push(message);
+      fire.database().ref("messages").push(message);
       this.showMessage = "";
-    }
+    },
   },
   mounted() {
     let viewMessage = this;
     const itemsRef = fire.database().ref("messages");
-    itemsRef.on("value", snapshot => {
+    itemsRef.on("value", (snapshot) => {
       let data = snapshot.val();
       let messages = [];
-      Object.keys(data).forEach(key => {
+      Object.keys(data).forEach((key) => {
         messages.push({
           id: key,
           username: data[key].username,
-          text: data[key].text
+          text: data[key].text,
         });
       });
       viewMessage.messages = messages;
     });
-  }
-}
+  },
+};
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons");
@@ -138,5 +174,17 @@ input {
 .card-body {
   min-height: 50vh;
   overflow-x: scroll;
+}
+.text-align-left{
+  text-align: left;
+}
+.text-align-right{
+  text-align: right;
+}
+.card-chat{
+  height: 20vh !important;
+}
+.card-chat1{
+  height: 40vh !important;
 }
 </style>

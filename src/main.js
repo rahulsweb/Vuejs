@@ -17,9 +17,11 @@ import ListDevices from './components/devices/List';
 import Chess from './components/games/Chess';
 import ListGames from './components/games/List';
 import Messages from './components/messages/Chat';
+import MessageTest from './components/messages/Message';
 import VueRouter from 'vue-router';
 import VueCodeHighlight from 'vue-code-highlight';
-
+import ChatMessage from 'vue-beautiful-chat';
+Vue.use(ChatMessage)
 Vue.use(VueCodeHighlight) 
 
 
@@ -94,7 +96,7 @@ const router = new VueRouter({
      { path: '/games', name: 'games-lists', component: ListGames },
      { path: '/games/chess', name: 'chess', component: Chess },
      { path: '/messages', name: 'message', component: Messages },
-
+     { path: '/messages-test', name: 'message-test', component: MessageTest },
   
   ]
 })

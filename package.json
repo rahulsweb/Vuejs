@@ -27,6 +27,7 @@
     "sort-array": "^4.1.4",
     "twemoji": "^13.0.2",
     "vue": "^2.6.12",
+    "vue-beautiful-chat": "^2.5.0",
     "vue-chat-scroll": "^1.4.0",
     "vue-chessboard": "^0.6.7",
     "vue-code-highlight": "^0.7.8",
