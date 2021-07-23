@@ -3,48 +3,40 @@
   <div>
     <!-- Login section -->
     <div class="login" v-if="!name">
-        <b-card
-         class="card-chat1"
+      <b-card
+        class="card-chat1"
         bg-variant="dark"
         text-variant="info"
         title="Join Group"
       >
         <b-card-text>
-          <h5 class="card-title">Welcome </h5>
+          <h5 class="card-title">Welcome</h5>
         </b-card-text>
-           <label 
-                  ><b>Enter Your Name</b>
-                </label>
-                <b-form-input
-                  :id="`name`"
-                  :state="true"
-                  class="text-success bg-light"
-                  :type="'text'"
-                 
-                  v-model="userName"
-                ></b-form-input>
-                 <button
-              type="button"
-              class="btn btn-info mt-2"
-              @click="updateUsername"
-            >
-            Join Group
-            </button>
+        <label><b>Enter Your Name</b> </label>
+        <b-form-input
+          :id="`name`"
+          :state="true"
+          class="text-success bg-light"
+          :type="'text'"
+          v-model="userName"
+        ></b-form-input>
+        <button type="button" class="btn btn-info mt-2" @click="updateUsername">
+          Join Group
+        </button>
       </b-card>
-
-  
     </div>
     <!-- Chat section -->
-    <div class="message-body " v-else>
-
-        <b-card
-         class="card-chat"
+    <div class="message-body" v-else>
+      <b-card
+        class="card-chat"
         bg-variant="dark"
         text-variant="white"
         title="Whats App Chatting Group"
       >
         <b-card-text>
-          <h5 class="card-title">Welcome <b-badge pill variant="danger">{{name}}</b-badge></h5>
+          <h5 class="card-title">
+            Welcome <b-badge pill variant="danger">{{ name }}</b-badge>
+          </h5>
         </b-card-text>
       </b-card>
       <div class="card">
@@ -54,15 +46,16 @@
             v-for="message in messages"
             :key="message"
           >
-          <div  :class="[message.username == name ? activeClass : '', errorClass]" >
-             <span class="mg-text mr-2 ml-2">{{ message.username }}</span>
-            <p class="message pt-1 mr-2 ml-2">{{ message.text }}</p>
-          </div>
-        
+            <div
+              :class="[message.username == name ? activeClass : '', errorClass]"
+            >
+              <span class="mg-text mr-2 ml-2">{{ message.username }}</span>
+              <p class="message pt-1 mr-2 ml-2">{{ message.text }}</p>
+            </div>
           </div>
         </div>
       </div>
-      <input v-model="showMessage" type="text" class="mt-3 mr-2 pl-2 pr-2 " />
+      <input v-model="showMessage" type="text" class="mt-3 mr-2 pl-2 pr-2" />
       <button class="btn btn-primary" @click="sendMessage">Send</button>
     </div>
   </div>
@@ -79,7 +72,7 @@ export default {
       activeClass: "text-light bg-dark  text-align-right",
       errorClass: "text-primary text-align-left",
       isActive: false,
-      track:require("@/assets/audio/speech.mp3")
+      track: require("@/assets/audio/speech.mp3"),
     };
   },
   methods: {
@@ -103,17 +96,14 @@ export default {
     itemsRef.on("value", (snapshot) => {
       let data = snapshot.val();
       let messages = [];
-        //  let audio = new Audio(this.track); // path to file
-        //     audio.play();
       Object.keys(data).forEach((key) => {
-    
         messages.push({
           id: key,
           username: data[key].username,
           text: data[key].text,
         });
       });
-      
+
       viewMessage.messages = messages;
     });
   },
@@ -177,18 +167,16 @@ input {
   min-height: 50vh;
   overflow-x: scroll;
 }
-.text-align-left{
+.text-align-left {
   text-align: left;
 }
-.text-align-right{
+.text-align-right {
   text-align: right;
 }
-.card-chat{
+.card-chat {
   height: 20vh !important;
 }
-.card-chat1{
+.card-chat1 {
   height: 50vh !important;
-
 }
-
 </style>
