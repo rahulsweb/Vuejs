@@ -21,7 +21,7 @@
           v-model="userName"
           @keyup.enter="updateUsername"
         ></b-form-input>
-        <button type="button" class="btn btn-info mt-2"  @click="updateUsername">
+        <button type="button" class="btn btn-info mt-2" @click="updateUsername">
           Join Group
         </button>
       </b-card>
@@ -40,14 +40,28 @@
           </h5>
         </b-card-text>
       </b-card>
+      <b-modal
+        v-model="show"
+        title="Update Message"
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="updateMessage"
+      >
+        <b-form-input
+          id="name-input"
+          v-model="textMessage"
+          required
+        ></b-form-input>
+      </b-modal>
       <div class="card">
         <div class="card-body">
           <div
             class="border pl-2 pt-1 ml-2 message-text mb-2"
-            v-for="message in messages"
-            :key="message"
+            v-for="(message, index) in messages"
+            :key="index"
           >
             <div
+              @dblclick="editMessage(message.id, message)"
               :class="[message.username == name ? activeClass : '', errorClass]"
             >
               <span class="mg-text mr-2 ml-2">{{ message.username }}</span>
@@ -56,13 +70,26 @@
           </div>
         </div>
       </div>
-      <input v-model="showMessage" type="text" class="mt-3 mr-2 pl-2 pr-2" @keyup.enter="sendMessage" />
+      <input
+        v-model="showMessage"
+        type="text"
+        class="mt-3 mr-2 pl-2 pr-2"
+        @keyup.enter="sendMessage"
+      />
       <button
         class="btn btn-primary mt-2"
         :disabled="!showMessage.length"
         @click="sendMessage"
       >
         Send
+      </button>
+      <button
+        v-if="name == 'firebase'"
+        type="button"
+        class="btn btn-danger ml-5 mt-2"
+        @click="deleteAll"
+      >
+        Delete
       </button>
     </div>
   </div>
@@ -81,17 +108,28 @@ export default {
       errorClass: "text-primary text-align-left",
       isActive: false,
       track: require("@/assets/audio/sent.mp3"),
+      textMessage: "",
+      submittedNames1: [],
+      show: false,
     };
   },
+  watch: {
+    textMessage(value) {
+      return value;
+    },
+  },
   methods: {
+    resetModal() {
+      this.textMessage = "";
+    },
+
     updateUsername() {
       this.name = this.userName;
       console.log(this.userName);
       this.userName = "";
     },
     sendMessage() {
-      if(this.showMessage.length==0)
-      return false;
+      if (this.showMessage.length == 0) return false;
       const message = {
         text: this.showMessage,
         username: this.name,
@@ -99,29 +137,53 @@ export default {
       fire.database().ref("messages").push(message);
       this.showMessage = "";
     },
+    editMessage(key, message) {
+      if(message.username==this.name){
+          this.key = key;
+      this.textMessage = message.text;
+      this.show = true;
+      }
+    return false;
+    },
+    updateMessage() {
+      // let viewMessage = this;
+      // let keys = this.key;
+      const itemsRef = fire.database().ref("messages");
+      itemsRef.child(this.key).update({ text: this.textMessage });
+      this.show = false;
+    },
+    deleteAll() {
+      if (this.name == "firebase") {
+        let db = fire.database().ref("messages");
+        db.remove();
+      }
+    },
+    displayMessage() {
+      let viewMessage = this;
+      const itemsRef = fire.database().ref("messages");
+      itemsRef.on("value", (snapshot) => {
+        let data = snapshot.val();
+        let messages = [];
+        let audio = new Audio(this.track); // path to file
+        if (this.flag) audio.play();
+        this.flag = true;
+
+        Object.keys(data).forEach((key) => {
+          if (data[key].text.length) {
+            messages.push({
+              id: key,
+              username: data[key].username,
+              text: data[key].text,
+            });
+          }
+        });
+
+        viewMessage.messages = messages;
+      });
+    },
   },
   mounted() {
-    let viewMessage = this;
-    const itemsRef = fire.database().ref("messages");
-    itemsRef.on("value", (snapshot) => {
-      let data = snapshot.val();
-      let messages = [];
-      let audio = new Audio(this.track); // path to file
-      if (this.flag) audio.play();
-      this.flag = true;
-
-      Object.keys(data).forEach((key) => {
-        if (data[key].text.length) {
-          messages.push({
-            id: key,
-            username: data[key].username,
-            text: data[key].text,
-          });
-        }
-      });
-
-      viewMessage.messages = messages;
-    });
+    this.displayMessage();
   },
 };
 </script>
