@@ -47,10 +47,12 @@
         @hidden="resetModal"
         @ok="updateMessage"
       >
+      
         <b-form-input
           id="name-input"
           v-model="textMessage"
           required
+          ref="message"
         ></b-form-input>
       </b-modal>
       <div class="card">
@@ -96,6 +98,7 @@
 </template>
 <script>
 import fire from "../../fire";
+import $ from "jquery";
 export default {
   data() {
     return {
@@ -138,16 +141,18 @@ export default {
       this.showMessage = "";
     },
     editMessage(key, message) {
+  
       if(message.username==this.name){
           this.key = key;
       this.textMessage = message.text;
       this.show = true;
+      $('#name-input').val( this.textMessage);
+        
       }
     return false;
     },
     updateMessage() {
-      // let viewMessage = this;
-      // let keys = this.key;
+      console.log( this.$refs.message)
       const itemsRef = fire.database().ref("messages");
       itemsRef.child(this.key).update({ text: this.textMessage });
       this.show = false;

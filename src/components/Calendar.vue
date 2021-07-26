@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="authentification">
+    <div v-if="!showFullCalendar">
+          <div class="authentification">
       <h2>Google Calendar event import/export</h2>
 
       <button
@@ -37,24 +38,82 @@
       <button class="btn btn-primary" @click="getData">Get Data</button>
     </div>
 
-    <pre id="content" style="white-space: pre-wrap"></pre>
 
-    <div id="events" class="item-container" v-if="authorized && items">
+    <div id="events"  v-if="authorized && items">
       <!-- <pre v-html="items"></pre> -->
-      <div v-for="(item,index) in items" :key="index"  class="card-body">
-        <span>Title</span>=<strong>{{item.summary}}</strong>
-        <br>
+      <div v-if="items.length">
+              <div  v-for="(item, index) in items" :key="index" class="card-body">
+        <span>Title</span>=<strong>{{ item.summary }}</strong>
+        <br />
         <span>URL</span>=<a :href="item.htmlLink">Event Link</a>
-          <br>
-          <span>Email</span>=<strong>{{item.organizer.email}}</strong>
-          <br>
-           <span>Event Date</span>=<strong>{{item.start.date}}</strong>
+        <br />
+        <span>Email</span>=<strong>{{ item.organizer.email }}</strong>
+        <br />
+        <span>Event Date</span>=<strong>{{ dateFormat(item.start) }}</strong>
       </div>
+      </div>
+      <div v-else>
+        <strong class="text-danger">Events Not Found</strong>
+      </div>
+
+    </div>
+    </div>
+
+    <div class="card-body w-full">
+      <div class="row">
+        <div class="card col-md-6">
+          <div class="card-body">
+            <p class="card-text">Calendar Display</p>
+            <button
+              class="btn btn-success"
+              @click="showFullCalendar = !showFullCalendar"
+            >
+              {{ showFullCalendar ? "Hide" : "Display" }} Calendar
+            </button>
+          </div>
+        </div>
+        <div class="card col-md-6"   v-if="showFullCalendar">
+          <div class="card-body">
+            <p class="card-text">Get Events From Google Calendar</p>
+            <button
+            
+              class="btn btn-success ml-5"
+              @click="syncGoogle"
+            >
+              Sync Google
+            </button>
+          </div>
+        </div>
+            <div class="card offset-3 col-md-6"    v-if="showFullCalendar">
+          <div class="card-body">
+            <p class="card-text">Remove All Events From Calendar</p>
+        <button
+     
+        class="btn btn-success ml-5"
+        @click="removeEvents"
+      >
+        Remove Google Events
+      </button>
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+    <div v-if="showFullCalendar" class="card-body w-full">
+      <FullCalendar :options="calendarOptions" />
     </div>
   </div>
 </template>
 <script>
 // import $ from "jquery";
+import "@fullcalendar/core/vdom"; // solves problem with Vite
+import FullCalendar from "@fullcalendar/vue";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import googleCalendarPlugin from "@fullcalendar/google-calendar";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import moment from "moment";
 // Client ID and API key from the Developer Console
 const CLIENT_ID =
   "404149809856-huhpm4nrkdalfiq9772ob01ftck9qa2g.apps.googleusercontent.com";
@@ -68,11 +127,41 @@ const DISCOVERY_DOCS = [
 const SCOPES = "https://www.googleapis.com/auth/calendar";
 
 export default {
+  components: {
+    FullCalendar, // make the <FullCalendar> tag available
+  },
   data() {
     return {
       items: undefined,
       api: undefined,
       authorized: false,
+      showFullCalendar: false,
+      calendarOptions: {
+        plugins: [
+          dayGridPlugin,
+          interactionPlugin,
+          googleCalendarPlugin,
+          timeGridPlugin,
+        ],
+        googleCalendarApiKey: "AIzaSyDEAnqdvwyMVhFgLnr8UUVKcT8alowkd1w",
+        eventSources: [],
+        initialView: "timeGridWeek",
+        headerToolbar: {
+          right: "prev,next",
+          tight: "title",
+          center: "timeGridDay,timeGridWeek,dayGridMonth",
+        },
+        contentHeight: "auto",
+              editable: true,
+              eventDisplay:"list-item",
+        selectable: true,
+        selectMirror: false,
+        dayMaxEvents: true,
+        weekends: true,
+        eventResizableFromStart:true,
+        eventStartEditable:true,
+
+      },
     };
   },
 
@@ -82,6 +171,22 @@ export default {
   },
 
   methods: {
+    syncGoogle() {
+       this.calendarOptions.eventSources = [];
+      let events = {
+        googleCalendarId: "rahulsonawanen@gmail.com",
+      };
+      this.calendarOptions.eventSources.push(events);
+    },
+    removeEvents() {
+      // let events=    {
+      //     googleCalendarId: ''
+      //   };
+      this.calendarOptions.eventSources = [];
+    },
+    dateFormat(dateObject) {
+      return moment(dateObject.dateTime).format("ddd, DD MMM YYYY");
+    },
     /**
      *  On load, called to load the auth2 library and API client library.
      */
@@ -126,14 +231,12 @@ export default {
         {
           summary: "Rahul First Event",
           location: "Pune",
-          description: "Divya Appointment",
+          description: "My First Event Added",
           start: {
-            dateTime: "2021-07-31T09:00:00-07:00",
-            timeZone: "America/Los_Angeles",
+            dateTime: "2021-07-31T09:00:00-01:00",
           },
           end: {
-            dateTime: "2021-07-31T17:00:00-08:00",
-            timeZone: "America/Los_Angeles",
+            dateTime: "2021-07-31T09:00:00-01:00",
           },
         },
         {
@@ -141,12 +244,10 @@ export default {
           location: "Pune",
           description: "Neosoft Appointment",
           start: {
-            dateTime: "2021-07-08T09:00:00-09:00",
-            timeZone: "America/Los_Angeles",
+            dateTime: "2021-07-29T09:00:00-01:00",
           },
           end: {
-            dateTime: "2021-07-08T17:00:00-10:00",
-            timeZone: "America/Los_Angeles",
+            dateTime: "2021-07-29T09:00:00-01:00",
           },
         },
         {
@@ -154,12 +255,10 @@ export default {
           location: "Pune",
           description: "Session  Today",
           start: {
-            dateTime: "2021-07-27T09:00:00-09:00",
-            timeZone: "America/Los_Angeles",
+            dateTime: "2021-07-28T09:00:00-01:00",
           },
           end: {
-            dateTime: "2021-07-27T17:00:00-10:00",
-            timeZone: "America/Los_Angeles",
+            dateTime: "2021-07-28T09:00:00-01:00",
           },
         },
       ];
@@ -276,7 +375,7 @@ export default {
           orderBy: "startTime",
         })
         .then((response) => {
-            vm.items = response.result.items;
+          vm.items = response.result.items;
           // vm.items = this.syntaxHighlight(response.result.items);
           // console.log(vm.items);
 

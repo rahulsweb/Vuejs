@@ -12,7 +12,15 @@
         </button>
       </div>
     </div>
-
+ <div class="card col-md-6">
+      <div class="card-body">
+        <h6 class="card-title"> Tab close event</h6>
+        <p class="card-text">Close <b-badge pill variant="danger" >Coming soon</b-badge></p>
+        <button type="button" class="btn btn-primary" @click="tabClose">
+       Tab Close
+        </button>
+      </div>
+    </div>
 
 
   </div>
@@ -29,6 +37,10 @@ export default {
     bluetooth(){
      this.$router.push({ path: "/devices/bluetooth" });
     },
+    tabClose(){
+           this.$router.push({ path: "/devices/tab" });
+
+    }
 
   },
 }

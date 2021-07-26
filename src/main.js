@@ -14,6 +14,7 @@ import Three from './components/programs/Three';
 import Test from './components/programs/Test';
 import Bluetooth from './components/devices/Bluetooth';
 import ListDevices from './components/devices/List';
+import Tabclose from './components/devices/Tabclose';
 import Chess from './components/games/Chess';
 import ListGames from './components/games/List';
 import Messages from './components/messages/Chat';
@@ -97,7 +98,8 @@ const router = new VueRouter({
      { path: '/games/chess', name: 'chess', component: Chess },
      { path: '/messages', name: 'message', component: Messages },
      { path: '/messages-test', name: 'message-test', component: MessageTest },
-  
+     { path: '/devices/tab', name: 'tab', component: Tabclose },
+
   ]
 })
 new Vue({
