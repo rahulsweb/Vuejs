@@ -14,12 +14,7 @@
           class="mt-10"
         >
           <b-card-text>
-          <strong v-if="'name' in obj">
-            {{obj.name}}
-          </strong>
-                   <strong v-if="obj.name">
-            {{obj.name}}
-          </strong>
+       Test
           </b-card-text>
         </b-card>
       </div>
