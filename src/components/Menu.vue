@@ -21,11 +21,22 @@
               class="btn btn-info"
               @click="redirectMessages"
             >
-              Chat Application            <b-badge pill variant="danger">coming soon</b-badge>
+              Chat Application
+              <b-badge pill variant="danger">coming soon</b-badge>
             </button>
           </div>
         </div>
       </b-card>
+    </div>
+    <div :class="classNames">
+      <ins
+        :className="adsbygoogle"
+        :style="{ display: 'block' }"
+        :data-ad-client="googleAdId"
+        :data-ad-slot="slot"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
     </div>
     <div class="row">
       <div class="card col-md-6">
@@ -73,14 +84,41 @@
         </div>
       </div>
     </div>
-    
+    <div :class="classNames">
+      <ins
+        :className="adsbygoogle"
+        :style="{ display: 'block' }"
+        :data-ad-client="googleAdId"
+        :data-ad-slot="slot"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+    </div>
   </div>
 </template>
 <script>
 // import printJS from 'print-js';
 export default {
+
   data() {
-    return {};
+    return {
+      googleInit: null,
+      googleAdId: "ca-pub-3717773214836704",
+          timeout: 200,
+    classNames: "page-top",
+    slot: 394738798,
+    };
+  },
+  mounted() {
+    let timeout = 200;
+    if (this.timeout) timeout = this.timeout;
+    this.googleInit = setTimeout(() => {
+      if (typeof window !== "undefined")
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }, timeout);
+  },
+  destroyed() {
+    if (this.googleInit) clearTimeout(this.googleInit);
   },
 
   methods: {
