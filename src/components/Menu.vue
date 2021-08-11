@@ -28,16 +28,7 @@
         </div>
       </b-card>
     </div>
-    <div :class="classNames">
-      <ins
-        :className="adsbygoogle"
-        :style="{ display: 'block' }"
-        :data-ad-client="googleAdId"
-        :data-ad-slot="slot"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-    </div>
+  
     <div class="row">
       <div class="card col-md-6">
         <div class="card-body">
@@ -83,17 +74,18 @@
           </button>
         </div>
       </div>
+          <div class="card col-md-6">
+        <div class="card-body">
+          <h5 class="card-title">Timer Demo</h5>
+          <p class="card-text">Timer related demos</p>
+          <button type="button" class="btn btn-primary" @click="redirectTimer">
+            Multiple Timer
+          </button>
+        </div>
+      </div>
     </div>
-    <div :class="classNames">
-      <ins
-        :className="adsbygoogle"
-        :style="{ display: 'block' }"
-        :data-ad-client="googleAdId"
-        :data-ad-slot="slot"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-    </div>
+
+    
   </div>
 </template>
 <script>
@@ -102,25 +94,9 @@ export default {
 
   data() {
     return {
-      googleInit: null,
-      googleAdId: "ca-pub-3717773214836704",
-          timeout: 200,
-    classNames: "page-top",
-    slot: 394738798,
+  
     };
   },
-  mounted() {
-    let timeout = 200;
-    if (this.timeout) timeout = this.timeout;
-    this.googleInit = setTimeout(() => {
-      if (typeof window !== "undefined")
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-    }, timeout);
-  },
-  destroyed() {
-    if (this.googleInit) clearTimeout(this.googleInit);
-  },
-
   methods: {
     listPrograms() {
       this.$router.push({ path: "/list" });
@@ -136,6 +112,9 @@ export default {
     },
     redirectMessages() {
       this.$router.push({ path: "/messages" });
+    },
+      redirectTimer() {
+      this.$router.push({ path: "/timer" });
     },
   },
 };

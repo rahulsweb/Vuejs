@@ -22,6 +22,7 @@ import MessageTest from './components/messages/Message';
 import VueRouter from 'vue-router';
 import VueCodeHighlight from 'vue-code-highlight';
 import ChatMessage from 'vue-beautiful-chat';
+import Timer from './components/programs/timer/Timer';
 Vue.use(ChatMessage)
 Vue.use(VueCodeHighlight) 
 
@@ -99,6 +100,8 @@ const router = new VueRouter({
      { path: '/messages', name: 'message', component: Messages },
      { path: '/messages-test', name: 'message-test', component: MessageTest },
      { path: '/devices/tab', name: 'tab', component: Tabclose },
+     { path: '/timer', name: 'timer', component: Timer },
+
 
   ]
 })
