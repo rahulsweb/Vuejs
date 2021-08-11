@@ -2,7 +2,7 @@
   <div>
     <div class="vx-card col-8 offset-2 float-left">
       <div class="row">
-        <p>
+        <!-- <p>
           time reference
           <a
             href="https://stackoverflow.com/questions/45652781/vuejs-start-a-timer-for-every-record"
@@ -15,10 +15,10 @@
             href="https://www.codegrepper.com/code-examples/javascript/display+specific+javascript++timer+for+each+user+"
             >Multiple timer javascript</a
           >
-        </p>
+        </p> -->
         <h2>Multiple Timers For different Users</h2>
 
-        <div class="col-6">
+        <div class="col-md-6">
           <b-card
             bg-variant="light"
             text-variant="dark"
@@ -29,7 +29,7 @@
               <button
                 type="button"
                 class="btn btn-info"
-                @click="start('timer1')"
+                @click.once="start('timer1')"
               >
                 Timer Start
                 <b-badge id="timer1" pill variant="danger"></b-badge>
@@ -37,7 +37,7 @@
             </b-card-text>
           </b-card>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
           <b-card
             bg-variant="light"
             text-variant="dark"
@@ -48,7 +48,7 @@
               <button
                 type="button"
                 class="btn btn-info"
-                @click="start('timer2')"
+                @click.once="start('timer2')"
               >
                 Timer Start
                 <b-badge id="timer2" pill variant="danger"></b-badge>
@@ -56,7 +56,7 @@
             </b-card-text>
           </b-card>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
           <b-card
             bg-variant="light"
             text-variant="dark"
@@ -67,7 +67,7 @@
               <button
                 type="button"
                 class="btn btn-info"
-                @click="start('timer3')"
+                @click.once="start('timer3')"
               >
                 Timer Start
                 <b-badge id="timer3" pill variant="danger"></b-badge>
@@ -76,7 +76,7 @@
           </b-card>
         </div>
 
-        <div class="col-6">
+        <div class="col-md-6">
           <b-card
             bg-variant="light"
             text-variant="dark"
@@ -87,7 +87,7 @@
               <button
                 type="button"
                 class="btn btn-info"
-                @click="start('timer4')"
+                @click.once="start('timer4')"
               >
                 Timer Start
                 <b-badge id="timer4" pill variant="danger"></b-badge>
@@ -96,7 +96,7 @@
           </b-card>
         </div>
 
-        <div class="col-6">
+        <div class="col-md-6">
           <b-card
             bg-variant="light"
             text-variant="dark"
@@ -107,7 +107,7 @@
               <button
                 type="button"
                 class="btn btn-info"
-                @click="start('timer5')"
+                @click.once="start('timer5')"
               >
                 Timer Start
                 <b-badge id="timer5" pill variant="danger"></b-badge>
@@ -116,7 +116,7 @@
           </b-card>
         </div>
 
-        <div class="col-6">
+        <div class="col-md-6">
           <b-card
             bg-variant="light"
             text-variant="dark"
@@ -127,7 +127,7 @@
               <button
                 type="button"
                 class="btn btn-info"
-                @click="start('timer6')"
+                @click.once="start('timer6')"
               >
                 Timer Start
                 <b-badge id="timer6" pill variant="danger"></b-badge>
@@ -143,23 +143,25 @@
 export default {
   data() {
     return {
-      obj: {
-        age: "56",
-      },
+      track: require("@/assets/audio/sent.mp3"),
     };
   },
 
   methods: {
     start(id) {
-      var fiveMinutes = 60 * 1,
+      var fiveMinutes = 30,
         display = document.querySelector(`#${id}`);
+      display.textContent = null;
       this.startTimer(fiveMinutes, display);
     },
     startTimer(duration, display) {
       var timer = duration,
         minutes,
         seconds;
-      setInterval(function () {
+      let obj = this;
+      let audio = new Audio(obj.track); // path to file
+
+      var starter = setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -169,7 +171,9 @@ export default {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-          timer = duration;
+          display.textContent = null;
+          audio.play();
+          clearInterval(starter);
         }
       }, 1000);
     },
