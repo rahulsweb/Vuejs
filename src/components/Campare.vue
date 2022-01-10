@@ -137,12 +137,14 @@
               v-if="item[Object.keys(item)[0]]"
             >
               <br />
-              <img
-                class="text-center"
-                :src="item[Object.keys(item)[0]].product_store_logo"
-                alt=""
-                width="100"
-              />
+              <a :href="item[Object.keys(item)[0]].product_store_url">
+                <img
+                  class="text-center"
+                  :src="item[Object.keys(item)[0]].product_store_logo"
+                  alt=""
+                  width="100"
+              /></a>
+
               <br />
               <br />
               <strong class="text-primary">
