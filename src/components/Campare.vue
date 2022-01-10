@@ -73,43 +73,43 @@
             </div>
           </div>
         </b-list-group-item>
-        <div class="col-6">
+        <div class="col-md-6">
           <b-list-group>
             <b-list-group-item
-              ><span class="col-6 text-success">Product Name </span>
-              <strong class="col-6 float-right">{{
+              ><span class="col-md-6 text-success">Product Name </span>
+              <strong class="col-md-6 float-right">{{
                 products.product_name
               }}</strong></b-list-group-item
             >
             <b-list-group-item
-              ><span class="col-6 text-success">Product Model </span>
-              <strong class="col-6 float-right">{{
+              ><span class="col-md-6 text-success">Product Model </span>
+              <strong class="col-md-6 float-right">{{
                 products.product_model
               }}</strong></b-list-group-item
             >
 
             <b-list-group-item
-              ><span class="col-6 text-success">Product Brand </span>
-              <strong class="col-6 float-right">{{
+              ><span class="col-md-6 text-success">Product Brand </span>
+              <strong class="col-md-6 float-right">{{
                 products.product_brand
               }}</strong></b-list-group-item
             >
             <b-list-group-item
-              ><span class="col-6 text-success">Product MRP </span>
-              <strong class="col-6 float-right text-primary"
+              ><span class="col-md-6 text-success">Product MRP </span>
+              <strong class="col-md-6 float-right text-primary"
                 >{{ products.product_mrp }} ₹</strong
               ></b-list-group-item
             >
             <b-list-group-item
-              ><span class="col-6 text-success">Product Rating </span>
-              <strong class="col-6 float-right text-info">{{
+              ><span class="col-md-6 text-success">Product Rating </span>
+              <strong class="col-md-6 float-right text-info">{{
                 products.product_ratings
               }}</strong></b-list-group-item
             >
 
             <b-list-group-item
-              ><span class="col-6 text-success">Product Colors </span>
-              <div class="col-6 float-right">
+              ><span class="col-md-6 text-success">Product Colors </span>
+              <div class="col-md-6 float-right">
                 <b-badge
                   pill
                   variant="dark"
@@ -128,7 +128,7 @@
           </b-list-group>
         </div>
 
-        <div class="card col-6">
+        <div class="card col-md-6">
           <div
             v-for="(item, index) in prices"
             :key="index"
