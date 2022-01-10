@@ -12,6 +12,7 @@
               id="inline-form-input-username"
               placeholder="Search"
               v-model="product"
+              @keypress.enter="getDetails"
             ></b-form-input>
           </b-input-group>
         </div>
@@ -20,7 +21,7 @@
           class="btn btn-success text-light offset-md-4 col-md-4"
           @click="getDetails"
         >
-          Campare
+          Campare Lowest Prices
         </button>
       </div>
     </div>
@@ -34,6 +35,7 @@
           :items="respose"
           :fields="fields"
           responsive
+          @row-clicked="getRow"
         >
           <template #cell(product_image)="data">
             <img :src="data.item.product_image" alt="" width="50" />
@@ -55,104 +57,98 @@
     </div>
 
     <!-- products -->
-    <div
-      class="card offset-md-2 col-md-8"
-      v-if="Object.entries(products).length"
-    >
-      <div class="row vx-row">
-        <h2>Product Details</h2>
-      </div>
+    <div class="vx-card" v-if="Object.entries(products).length">
+      <div class="row">
+        <div class="col-6">
+          <b-list-group>
+            <b-list-group-item
+              ><span class="col-6 text-success">Product Name </span>
+              <strong class="col-6 float-right">{{
+                products.product_name
+              }}</strong></b-list-group-item
+            >
+            <b-list-group-item
+              ><span class="col-6 text-success">Product Model </span>
+              <strong class="col-6 float-right">{{
+                products.product_model
+              }}</strong></b-list-group-item
+            >
 
-      <div>
-        <b-list-group>
-          <b-list-group-item
-            ><span class="col-6 text-success">Product Name </span>
-            <strong class="col-6 float-right">{{
-              products.product_name
-            }}</strong></b-list-group-item
-          >
-          <b-list-group-item
-            ><span class="col-6 text-success">Product Model </span>
-            <strong class="col-6 float-right">{{
-              products.product_model
-            }}</strong></b-list-group-item
-          >
+            <b-list-group-item
+              ><span class="col-6 text-success">Product Brand </span>
+              <strong class="col-6 float-right">{{
+                products.product_brand
+              }}</strong></b-list-group-item
+            >
+            <b-list-group-item
+              ><span class="col-6 text-success">Product MRP </span>
+              <strong class="col-6 float-right text-primary"
+                >{{ products.product_mrp }} ₹</strong
+              ></b-list-group-item
+            >
+            <b-list-group-item
+              ><span class="col-6 text-success">Product Rating </span>
+              <strong class="col-6 float-right text-info">{{
+                products.product_ratings
+              }}</strong></b-list-group-item
+            >
+            <b-list-group-item
+              ><span class="col-6 text-success">Product Images </span>
 
-          <b-list-group-item
-            ><span class="col-6 text-success">Product Brand </span>
-            <strong class="col-6 float-right">{{
-              products.product_brand
-            }}</strong></b-list-group-item
-          >
-          <b-list-group-item
-            ><span class="col-6 text-success">Product MRP </span>
-            <strong class="col-6 float-right text-primary"
-              >{{ products.product_mrp }} ₹</strong
-            ></b-list-group-item
-          >
-          <b-list-group-item
-            ><span class="col-6 text-success">Product Rating </span>
-            <strong class="col-6 float-right text-info">{{
-              products.product_ratings
-            }}</strong></b-list-group-item
-          >
-          <b-list-group-item
-            ><span class="col-6 text-success">Product Images </span>
-
-            <div class="col-6 float-right">
-              <div>
-                <img
-                  class="m-2"
-                  v-for="(item, index) in products.product_images"
-                  :key="index"
-                  :src="item"
-                  alt=""
-                  width="50"
-                />
+              <div class="col-6 float-right">
+                <div>
+                  <img
+                    class="m-2"
+                    v-for="(item, index) in products.product_images"
+                    :key="index"
+                    :src="item"
+                    alt=""
+                    width="50"
+                  />
+                </div>
               </div>
-            </div>
-          </b-list-group-item>
+            </b-list-group-item>
 
-          <b-list-group-item
-            ><span class="col-6 text-success">Product Colors </span>
-            <div class="col-6 float-right">
-              <strong
-                class="text-primary"
-                v-for="(item, index) in products.available_colors"
-                :key="index"
-                >{{ item }} <br
-              /></strong></div
-          ></b-list-group-item>
-        </b-list-group>
-      </div>
-
-      <div class="card inline-flex">
-        <div class="row vx-row">
-          <h3 class="text-primary">Product Campare Prices</h3>
+            <b-list-group-item
+              ><span class="col-6 text-success">Product Colors </span>
+              <div class="col-6 float-right">
+                <strong
+                  class="text-primary"
+                  v-for="(item, index) in products.available_colors"
+                  :key="index"
+                  >{{ item }} <br
+                /></strong></div
+            ></b-list-group-item>
+          </b-list-group>
         </div>
 
-        <div
-          v-for="(item, index) in prices"
-          :key="index"
-          :class="
-            JSON.stringify(Object.values(prices[index])[0]) == '[]'
-              ? 'hide'
-              : 'inline-flex'
-          "
-        >
-          <div class="text-info inline-flex" v-if="item[Object.keys(item)[0]]">
-            <br />
-            <img
-              class="text-center"
-              :src="item[Object.keys(item)[0]].product_store_logo"
-              alt=""
-              width="100"
-            />
-            <br />
-            <br />
-            <strong class="text-primary">
-              {{ item[Object.keys(item)[0]].product_price }} ₹
-            </strong>
+        <div class="card col-6">
+          <div
+            v-for="(item, index) in prices"
+            :key="index"
+            :class="
+              JSON.stringify(Object.values(prices[index])[0]) == '[]'
+                ? 'hide'
+                : 'inline-flex'
+            "
+          >
+            <div
+              class="text-info inline-flex"
+              v-if="item[Object.keys(item)[0]]"
+            >
+              <br />
+              <img
+                class="text-center"
+                :src="item[Object.keys(item)[0]].product_store_logo"
+                alt=""
+                width="100"
+              />
+              <br />
+              <br />
+              <strong class="text-primary">
+                {{ item[Object.keys(item)[0]].product_price }} ₹
+              </strong>
+            </div>
           </div>
         </div>
       </div>
@@ -226,6 +222,9 @@ export default {
         .catch((err) => {
           console.error("Login failed.", err);
         });
+    },
+    getRow(item) {
+      this.getInfo(item.product_id);
     },
     getInfo(id) {
       let options = {
