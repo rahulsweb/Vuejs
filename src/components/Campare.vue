@@ -18,7 +18,7 @@
         </div>
         <button
           type="button"
-          class="btn btn-success text-light offset-md-4 col-md-4"
+          class="btn btn-success text-light offset-md-4 col-md-4 mb-5"
           @click="getDetails"
         >
           Campare Lowest Prices
@@ -57,8 +57,22 @@
     </div>
 
     <!-- products -->
-    <div class="vx-card" v-if="Object.entries(products).length">
+    <div class="m-10" v-if="Object.entries(products).length">
       <div class="row">
+        <b-list-group-item>
+          <div class="col-12 float-right">
+            <div>
+              <img
+                class="m-2 img-responsive"
+                v-for="(item, index) in products.product_images"
+                :key="index"
+                :src="item"
+                alt=""
+                width="200"
+              />
+            </div>
+          </div>
+        </b-list-group-item>
         <div class="col-6">
           <b-list-group>
             <b-list-group-item
@@ -92,33 +106,25 @@
                 products.product_ratings
               }}</strong></b-list-group-item
             >
-            <b-list-group-item
-              ><span class="col-6 text-success">Product Images </span>
-
-              <div class="col-6 float-right">
-                <div>
-                  <img
-                    class="m-2"
-                    v-for="(item, index) in products.product_images"
-                    :key="index"
-                    :src="item"
-                    alt=""
-                    width="50"
-                  />
-                </div>
-              </div>
-            </b-list-group-item>
 
             <b-list-group-item
               ><span class="col-6 text-success">Product Colors </span>
               <div class="col-6 float-right">
-                <strong
-                  class="text-primary"
+                <b-badge
+                  pill
+                  variant="dark"
                   v-for="(item, index) in products.available_colors"
                   :key="index"
-                  >{{ item }} <br
-                /></strong></div
-            ></b-list-group-item>
+                  :style="{
+                    'background-color': `${item}`,
+                    color: 'white',
+                    margin: '5px',
+                  }"
+                >
+                  {{ item }}</b-badge
+                >
+              </div></b-list-group-item
+            >
           </b-list-group>
         </div>
 
@@ -205,6 +211,12 @@ export default {
     rows() {
       return this.respose.length;
     },
+    dynamicStyle(color) {
+      return {
+        // in the case of redComp, greenComp and blueComp are a vue prop or data
+        color: `${color};`,
+      };
+    },
   },
   methods: {
     getDetails() {
@@ -226,6 +238,7 @@ export default {
         });
     },
     getRow(item) {
+      this.respose = [];
       this.getInfo(item.product_id);
     },
     getInfo(id) {
@@ -255,7 +268,6 @@ export default {
 <style scoped>
 .inline-flex {
   display: inline-block;
-  margin: 5px;
   font-weight: bolder;
 }
 .hide {
@@ -263,5 +275,8 @@ export default {
 }
 .show {
   display: block;
+}
+.m-10 {
+  margin: 5%;
 }
 </style>
