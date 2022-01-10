@@ -29,10 +29,11 @@
         <b-table
           :per-page="perPage"
           :current-page="currentPage"
-          class="offset-md-2 col-md-8"
+          class="col-md-12"
           hover
           :items="respose"
           :fields="fields"
+          responsive
         >
           <template #cell(product_image)="data">
             <img :src="data.item.product_image" alt="" width="50" />
@@ -76,10 +77,23 @@
               products.product_model
             }}</strong></b-list-group-item
           >
+
           <b-list-group-item
             ><span class="col-6 text-success">Product Brand </span>
             <strong class="col-6 float-right">{{
               products.product_brand
+            }}</strong></b-list-group-item
+          >
+          <b-list-group-item
+            ><span class="col-6 text-success">Product MRP </span>
+            <strong class="col-6 float-right text-primary"
+              >{{ products.product_mrp }} ₹</strong
+            ></b-list-group-item
+          >
+          <b-list-group-item
+            ><span class="col-6 text-success">Product Rating </span>
+            <strong class="col-6 float-right text-info">{{
+              products.product_ratings
             }}</strong></b-list-group-item
           >
           <b-list-group-item
@@ -112,7 +126,7 @@
         </b-list-group>
       </div>
 
-      <div class="card offset-md-4 col-md-4">
+      <div class="card inline-flex">
         <div class="row vx-row">
           <h3 class="text-primary">Product Campare Prices</h3>
         </div>
@@ -135,9 +149,10 @@
               width="100"
             />
             <br />
-            <h4 class="text-danger m-2">
+            <br />
+            <strong class="text-primary">
               {{ item[Object.keys(item)[0]].product_price }} ₹
-            </h4>
+            </strong>
           </div>
         </div>
       </div>
@@ -238,7 +253,9 @@ export default {
 </script>
 <style scoped>
 .inline-flex {
-  display: block;
+  display: inline-block;
+  margin: 5px;
+  font-weight: bolder;
 }
 .hide {
   display: none;

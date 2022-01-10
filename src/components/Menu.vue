@@ -14,8 +14,8 @@
 
         <div class="row ">
           <div class="card " >
-            <div class="card-body flex-inline">
-         <div class="col-md-6">
+            <div class="card-body ">
+         <div class="w-full">
             <h5 class="card-title text-dark">Chat message</h5>
             <p class="card-text text-dark">Message send to Your Friend</p>
             <button
@@ -27,7 +27,8 @@
               <b-badge pill variant="danger">coming soon</b-badge>
             </button>
           </div>
-          <div class="col-md-6">
+          <br>
+          <div class="w-full">
             <h5 class="card-title text-dark">Campare Sites</h5>
             <p class="card-text text-dark">Enter your product</p>
             <button type="button" class="btn btn-info" @click="redirectCampare">
