@@ -4,7 +4,7 @@
       <b-card
         class="mb-5"
         bg-variant="dark"
-        text-variant="white"
+        text-variant="light"
         title="Socket Programming Demo"
       >
         <b-card-text>
@@ -12,8 +12,10 @@
         </b-card-text>
         <br />
 
-        <div class="card col-md-6">
-          <div class="card-body">
+        <div class="row ">
+          <div class="card " >
+            <div class="card-body flex-inline">
+         <div class="col-md-6">
             <h5 class="card-title text-dark">Chat message</h5>
             <p class="card-text text-dark">Message send to Your Friend</p>
             <button
@@ -25,10 +27,23 @@
               <b-badge pill variant="danger">coming soon</b-badge>
             </button>
           </div>
+          <div class="col-md-6">
+            <h5 class="card-title text-dark">Campare Sites</h5>
+            <p class="card-text text-dark">Enter your product</p>
+            <button type="button" class="btn btn-info" @click="redirectCampare">
+              Compare Products
+              <b-badge pill variant="success">Check here</b-badge>
+            </button>
+          </div>
+
+
+            </div>
+          </div>
+ 
         </div>
       </b-card>
     </div>
-  
+
     <div class="row">
       <div class="card col-md-6">
         <div class="card-body">
@@ -74,7 +89,7 @@
           </button>
         </div>
       </div>
-          <div class="card col-md-6">
+      <div class="card col-md-6">
         <div class="card-body">
           <h5 class="card-title">Timer Demo</h5>
           <p class="card-text">Timer related demos</p>
@@ -84,18 +99,13 @@
         </div>
       </div>
     </div>
-
-    
   </div>
 </template>
 <script>
 // import printJS from 'print-js';
 export default {
-
   data() {
-    return {
-  
-    };
+    return {};
   },
   methods: {
     listPrograms() {
@@ -113,13 +123,19 @@ export default {
     redirectMessages() {
       this.$router.push({ path: "/messages" });
     },
-      redirectTimer() {
+    redirectTimer() {
       this.$router.push({ path: "/timer" });
+    },
+    redirectCampare() {
+      this.$router.push({ path: "/campare" });
     },
   },
 };
 </script>
 <style scoped>
+.flex-inline{
+  display: flex;
+}
 .radius {
   border-radius: 15px;
 }

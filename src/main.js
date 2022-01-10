@@ -6,6 +6,7 @@ import Scan from './components/Scan'
 import Qcode from './components/Qcode'
 import Age from './components/Age'
 import Calendar from './components/Calendar'
+import Campare from './components/Campare'
 import List from './components/List';
 import Menu from './components/Menu';
 import First from './components/programs/First';
@@ -101,6 +102,7 @@ const router = new VueRouter({
      { path: '/messages-test', name: 'message-test', component: MessageTest },
      { path: '/devices/tab', name: 'tab', component: Tabclose },
      { path: '/timer', name: 'timer', component: Timer },
+     { path: '/campare', name: 'campare', component: Campare },
 
 
   ]
