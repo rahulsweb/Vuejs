@@ -63,7 +63,7 @@
           <div class="col-md-12 float-right">
             <div>
               <img
-                class="m-2 img-responsive"
+                class="m-2 img-responsive zoom"
                 v-for="(item, index) in products.product_images"
                 :key="index"
                 :src="item"
@@ -278,5 +278,16 @@ export default {
 }
 .m-10 {
   margin: 2%;
+}
+.zoom {
+  padding: 50px;
+  transition: transform 0.2s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(
+    2
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 </style>
