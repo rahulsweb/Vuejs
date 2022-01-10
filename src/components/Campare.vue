@@ -60,7 +60,7 @@
     <div class="m-10" v-if="Object.entries(products).length">
       <div class="row">
         <b-list-group-item>
-          <div class="col-12 float-right">
+          <div class="col-md-12 float-right">
             <div>
               <img
                 class="m-2 img-responsive"
@@ -116,8 +116,8 @@
                   v-for="(item, index) in products.available_colors"
                   :key="index"
                   :style="{
-                    'background-color': `${item}`,
-                    color: 'white',
+                    'background-color': `${item != 'White' ? item : ''}`,
+                    color: `#eee`,
                     margin: '5px',
                   }"
                 >
@@ -277,6 +277,6 @@ export default {
   display: block;
 }
 .m-10 {
-  margin: 5%;
+  margin: 2%;
 }
 </style>
