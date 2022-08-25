@@ -68,17 +68,8 @@ beamsClient.setDeviceInterests(['a', 'b', 'c'])
   .then(() => console.log('Device interests have been set'))
   .catch(e => console.error('Could not set device interests', e));
 
-  // The user will now not be subscribed to any interests
-beamsClient.clearDeviceInterests()
-.then(() => console.log('Device interests have been cleared'))
-.catch(e => console.error('Could not clear device interests', e));
 
 
-beamsClient.getUserId()
-  .then(userId => {
-    console.log(userId) // Will log the current user id
-  })
-  .catch(e => console.error('Could not get user id', e));
 
 
 // beamsClient.start()
