@@ -29,10 +29,22 @@ import * as PusherPushNotifications from "@pusher/push-notifications-web";
 const beamsClient = new PusherPushNotifications.Client({
   instanceId: '6bf0e386-cfa1-4afe-bbf2-cb2170d80b7b',
 });
-const tokenProvider = new PusherPushNotifications.TokenProvider({
-  url: 'https://example.com/pusher/beams-auth',
-})
-
+// const tokenProvider = new PusherPushNotifications.TokenProvider({
+//   url: 'https://example.com/pusher/beams-auth',
+// })
+const beamsClient = new PusherPushNotifications.Client({
+  instanceId: "YOUR_INSTANCE_ID",
+});
+beamsClient
+  .start()
+  .then((beamsClient) => beamsClient.getDeviceId())
+  .then((deviceId) =>
+    console.log("Successfully registered with Beams. Device ID:", deviceId)
+  )
+  .then(() => beamsClient.addDeviceInterest("hello"))
+  .then(() => beamsClient.getDeviceInterests())
+  .then((interests) => console.log("Current interests:", interests))
+  .catch(console.error);
 
 beamsClient.start()
   .then(() => beamsClient.addDeviceInterest('hello'))
@@ -69,10 +81,10 @@ beamsClient.getUserId()
   .catch(e => console.error('Could not get user id', e));
 
 
-beamsClient.start()
-.then(() => beamsClient.setUserId('<USER_ID_HERE>', tokenProvider))
-.then(() => console.log('User ID has been set'))
-.catch(e => console.error('Could not authenticate with Beams:', e));
+// beamsClient.start()
+// .then(() => beamsClient.setUserId('123', tokenProvider))
+// .then(() => console.log('User ID has been set'))
+// .catch(e => console.error('Could not authenticate with Beams:', e));
 
 Vue.use(ChatMessage)
 Vue.use(VueCodeHighlight) 
