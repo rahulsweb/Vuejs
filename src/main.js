@@ -24,6 +24,19 @@ import VueRouter from 'vue-router';
 import VueCodeHighlight from 'vue-code-highlight';
 import ChatMessage from 'vue-beautiful-chat';
 import Timer from './components/programs/timer/Timer';
+import Pusher from './components/Pusher';
+import * as PusherPushNotifications from "@pusher/push-notifications-web";
+const beamsClient = new PusherPushNotifications.Client({
+  instanceId: '6bf0e386-cfa1-4afe-bbf2-cb2170d80b7b',
+});
+
+beamsClient.start()
+  .then(() => beamsClient.addDeviceInterest('hello'))
+  .then(() => console.log('Successfully registered and subscribed!'))
+  .catch(console.error);
+
+
+
 Vue.use(ChatMessage)
 Vue.use(VueCodeHighlight) 
 
@@ -104,7 +117,7 @@ const router = new VueRouter({
      { path: '/timer', name: 'timer', component: Timer },
      { path: '/campare', name: 'campare', component: Campare },
 
-
+     { path: '/pusher', name: 'pusher', component: Pusher },
   ]
 })
 new Vue({

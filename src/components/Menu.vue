@@ -99,6 +99,15 @@
           </button>
         </div>
       </div>
+         <div class="card col-md-6">
+        <div class="card-body">
+          <h5 class="card-title">Pusher</h5>
+          <p class="card-text">Pusher plugin</p>
+          <button type="button" class="btn btn-primary" @click="redirectPusher">
+            Pusher plugin programming
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -129,6 +138,9 @@ export default {
     },
     redirectCampare() {
       this.$router.push({ path: "/campare" });
+    },
+     redirectPusher() {
+      this.$router.push({ path: "/pusher" });
     },
   },
 };
