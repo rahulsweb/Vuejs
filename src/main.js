@@ -29,13 +29,50 @@ import * as PusherPushNotifications from "@pusher/push-notifications-web";
 const beamsClient = new PusherPushNotifications.Client({
   instanceId: '6bf0e386-cfa1-4afe-bbf2-cb2170d80b7b',
 });
+const tokenProvider = new PusherPushNotifications.TokenProvider({
+  url: 'https://example.com/pusher/beams-auth',
+})
+
 
 beamsClient.start()
   .then(() => beamsClient.addDeviceInterest('hello'))
   .then(() => console.log('Successfully registered and subscribed!'))
   .catch(console.error);
 
+  beamsClient.start()
+  .then(() => beamsClient.removeDeviceInterest('donuts'))
+  .catch(e => console.error('Could not remove device interest', e));
 
+
+
+beamsClient.getDeviceInterests()
+.then(interests => {
+  console.log(interests) // Will log something like ["a", "b", "c"]
+})
+.catch(e => console.error('Could not get device interests', e));
+
+// The user will now be subscribed to "a", "b" & "c" only
+beamsClient.setDeviceInterests(['a', 'b', 'c'])
+  .then(() => console.log('Device interests have been set'))
+  .catch(e => console.error('Could not set device interests', e));
+
+  // The user will now not be subscribed to any interests
+beamsClient.clearDeviceInterests()
+.then(() => console.log('Device interests have been cleared'))
+.catch(e => console.error('Could not clear device interests', e));
+
+
+beamsClient.getUserId()
+  .then(userId => {
+    console.log(userId) // Will log the current user id
+  })
+  .catch(e => console.error('Could not get user id', e));
+
+
+beamsClient.start()
+.then(() => beamsClient.setUserId('<USER_ID_HERE>', tokenProvider))
+.then(() => console.log('User ID has been set'))
+.catch(e => console.error('Could not authenticate with Beams:', e));
 
 Vue.use(ChatMessage)
 Vue.use(VueCodeHighlight) 
