@@ -32,9 +32,9 @@ const beamsClient = new PusherPushNotifications.Client({
 // const tokenProvider = new PusherPushNotifications.TokenProvider({
 //   url: 'https://example.com/pusher/beams-auth',
 // })
-const beamsClient = new PusherPushNotifications.Client({
-  instanceId: "YOUR_INSTANCE_ID",
-});
+// const beamsClient = new PusherPushNotifications.Client({
+//   instanceId: "YOUR_INSTANCE_ID",
+// });
 beamsClient
   .start()
   .then((beamsClient) => beamsClient.getDeviceId())
