@@ -25,6 +25,10 @@ import VueCodeHighlight from 'vue-code-highlight';
 import ChatMessage from 'vue-beautiful-chat';
 import Timer from './components/programs/timer/Timer';
 import Pusher from './components/Pusher';
+// import './assets/css/styles.css'
+import Index from './components/Index';
+
+import './assets/css/styles.css';
 import * as PusherPushNotifications from "@pusher/push-notifications-web";
 const beamsClient = new PusherPushNotifications.Client({
   instanceId: '6bf0e386-cfa1-4afe-bbf2-cb2170d80b7b',
@@ -79,8 +83,7 @@ beamsClient.setDeviceInterests(['a', 'b', 'c'])
 
 Vue.use(ChatMessage)
 Vue.use(VueCodeHighlight) 
-
-
+import './assets/css/styles.css';
 // Usage with Node.js
 // const { google, outlook, office365, yahoo, ics } = require("calendar-link");
 
@@ -135,7 +138,7 @@ const router = new VueRouter({
    mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', name: 'home', component: Menu },
+    { path: '/menu', name: 'home', component: Menu },
     { path: '/print', name: 'foo', component: Print },
     { path: '/scan', name: 'foo', component: Scan },
     { path: '/code', name: 'foo', component: Qcode },
@@ -158,6 +161,10 @@ const router = new VueRouter({
      { path: '/campare', name: 'campare', component: Campare },
 
      { path: '/pusher', name: 'pusher', component: Pusher },
+    //  { path: '/header', name: 'Header', component: Header },
+     { path: '/', name: 'Index', component: Index },
+
+
   ]
 })
 new Vue({
