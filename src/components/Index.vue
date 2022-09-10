@@ -23,11 +23,12 @@
                         <span class="btn-icon"><i class="fas fa-download"></i></span>
                     </a>
 
-                      <a  @click="redirectMenu" class="main-btn ml-5 pr-1 mr-2">
+                      <a  @click="redirectMenu" class="main-btn ml-5">
                         <span class="btn-text"> Apps</span>
                         <span class="btn-icon"><i class="fas fa-download"></i></span>
                     </a>
                 </div>
+                
                  
             </div>
         </div>
