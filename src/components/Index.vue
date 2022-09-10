@@ -17,18 +17,20 @@
                     I'm a Web Developer, I love to create beautiful and functional websites.
                              </p>
                              
-                <div class="btn-con">
+                <div class="w-full">
                     <a href="" class="main-btn">
-                        <span class="btn-text">Download CV</span>
+                        <span class="btn-text">Download  My  CV</span>
                         <span class="btn-icon"><i class="fas fa-download"></i></span>
                     </a>
 
-                      <a  @click="redirectMenu" class="main-btn ml-5">
-                        <span class="btn-text"> Apps</span>
-                        <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
+                  
                 </div>
-                
+                 <div class="pt-1 pb-1 mt-3 w-full">
+                           <a  @click="redirectMenu" class="main-btn ">
+                        <span class="btn-text"> My Project Apps</span>
+                        <span class="btn-icon "><i class="fas fa-user"></i></span>
+                    </a>
+                 </div>
                  
             </div>
         </div>
