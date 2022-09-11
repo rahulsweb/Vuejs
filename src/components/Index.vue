@@ -43,7 +43,7 @@ export default {
     data() {
         return {
             // path: require("@/assets/img/"),
- hero: require("@/assets/img/hero.png"),
+ hero: require("@/assets/img/hero.jpeg"),
         }
     },
    
