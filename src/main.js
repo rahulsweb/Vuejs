@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import Print from './components/Print'
 import PrintData from './components/PrintData'
+import Tab from './components/Tab'
 import Scan from './components/Scan'
 import Qcode from './components/Qcode'
 import Age from './components/Age'
@@ -145,7 +146,7 @@ const router = new VueRouter({
     { path: '/age', name: 'foo', component: Age },
     { path: '/sync', name: 'sync', component: Calendar },
     { path: '/list', name: 'list', component: List },
-    { path: '/menu', name: 'menu', component: PrintData },
+    { path: '/apps', name: 'apps', component: PrintData },
     { path: '/list/1', name: '1', component: First },
     { path: '/list/2', name: '2', component: Two },
     { path: '/list/3', name: '3', component: Three },
@@ -163,7 +164,7 @@ const router = new VueRouter({
      { path: '/pusher', name: 'pusher', component: Pusher },
     //  { path: '/header', name: 'Header', component: Header },
      { path: '/', name: 'Index', component: Index },
-
+  { path: '/tab', name: 'Index', component: Tab },
 
   ]
 })

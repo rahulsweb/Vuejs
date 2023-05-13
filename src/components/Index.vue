@@ -1,62 +1,64 @@
 <template>
-    <div>
-         <header class="container header active" id="home">
-        <div class="header-content">
-            <div class="left-header">
-                <div class="h-shape"></div>
-                <div class="image">
-                    <img :src="hero" alt="">
-                </div>
-            </div>
-            <div class="right-header">
-                <h1 class="name">
-                    Hi, I'm <span>Rahul Sonawane.</span>
-                    A Web Developer.
-                </h1>
-                <p>
-                    I'm a Web Developer, I love to create beautiful and functional websites.
-                             </p>
-                             
-                <div class="w-full">
-                    <a href="" class="main-btn">
-                        <span class="btn-text">Download  My  CV</span>
-                        <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
-
-                  
-                </div>
-                 <div class="pt-1 pb-1 mt-3 w-full">
-                           <a  @click="redirectMenu" class="main-btn ">
-                        <span class="btn-text"> My Project Apps</span>
-                        <span class="btn-icon "><i class="fas fa-user"></i></span>
-                    </a>
-                 </div>
-                 
-            </div>
+  <div>
+    <header class="container header active" id="home">
+      <div class="header-content">
+        <div class="left-header">
+          <div class="h-shape"></div>
+          <div class="image">
+            <img :src="hero" alt="" />
+          </div>
         </div>
+        <div class="right-header">
+          <h1 class="name">
+            Hi, I'm <span>Rahul Sonawane.</span>
+            A Web Developer.
+          </h1>
+          <Slots>
+            <p>
+              I'm a Web Developer, I love to create beautiful and functional
+              websites.
+            </p> </Slots
+          >
+
+          <div class="w-full">
+            <a href="" class="main-btn">
+              <span class="btn-text">Download My CV</span>
+              <span class="btn-icon"><i class="fas fa-download"></i></span>
+            </a>
+          </div>
+          <div class="pt-1 pb-1 mt-3 w-full">
+            <a @click="redirectMenu" class="main-btn">
+              <span class="btn-text"> My Project Apps</span>
+              <span class="btn-icon"><i class="fas fa-user"></i></span>
+            </a>
+          </div>
+        </div>
+      </div>
     </header>
-    </div>
+  </div>
 </template>
 <script>
-
+import Slots from "./Slots.vue";
 export default {
-    data() {
-        return {
-            // path: require("@/assets/img/"),
- hero: require("@/assets/img/hero.jpeg"),
-        }
+  data() {
+    return {
+      // path: require("@/assets/img/"),
+      hero: require("@/assets/img/hero.jpeg"),
+    };
+  },
+  components: {
+    Slots,
+  },
+
+  methods: {
+    redirectMenu() {
+      this.$router.push({ path: "/menu" });
     },
-   
-    methods:{
-        redirectMenu(){
-                  this.$router.push({ path: "/menu" });
-        }
-    }
-}
+  },
+};
 </script>
 
 <style scoped>
-    
 .container {
   /* display: none; */
   /* transform: translateY(-100%) scale(0);

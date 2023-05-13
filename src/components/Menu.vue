@@ -122,7 +122,7 @@ export default {
       this.$router.push({ path: "/list" });
     },
     redirectApps() {
-      this.$router.push({ path: "/menu" });
+      this.$router.push({ path: "/apps" });
     },
     redirectDevices() {
       this.$router.push({ path: "/devices" });
