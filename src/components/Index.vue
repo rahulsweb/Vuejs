@@ -67,7 +67,7 @@ export default {
     return {
       // path: require("@/assets/img/"),
       hero: require("@/assets/img/hero.jpeg"),
-       hero1: require("@/assets/img/profile.jpeg"),
+       hero1: require("@/assets/img/hero1.jpeg"),
       //  pdf: require("@/assets/img/resume.pdf"),
         publicPath: process.env.BASE_URL
     };
