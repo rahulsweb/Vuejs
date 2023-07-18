@@ -78,14 +78,15 @@ export default {
 
   methods: {
   downloadItem () {
-    let url='resume.pdf';
-     let label='resume.pdf';
+     let label='rahul-sonawane';
+     let filename = `${(label+'-'+new Date().toJSON().slice(0,10))}.pdf`
+
     Axios.get(url, { responseType: 'blob' })
       .then(response => {
         const blob = new Blob([response.data], { type: 'application/pdf' })
         const link = document.createElement('a')
         link.href = URL.createObjectURL(blob)
-        link.download = label
+        link.download = filename
         link.click()
         URL.revokeObjectURL(link.href)
       }).catch(console.error)
