@@ -5,6 +5,7 @@ import PrintData from './components/PrintData'
 import Tab from './components/Tab'
 import Scan from './components/Scan'
 import Qcode from './components/Qcode'
+import Upload from './components/Uploads'
 import Age from './components/Age'
 import Calendar from './components/Calendar'
 import Campare from './components/Campare'
@@ -160,6 +161,7 @@ const router = new VueRouter({
      { path: '/devices/tab', name: 'tab', component: Tabclose },
      { path: '/timer', name: 'timer', component: Timer },
      { path: '/campare', name: 'campare', component: Campare },
+     { path: '/upload', name: 'upload', component: Upload },
 
      { path: '/pusher', name: 'pusher', component: Pusher },
     //  { path: '/header', name: 'Header', component: Header },

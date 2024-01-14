@@ -1,8 +1,26 @@
 
 <template>
   <div>
+    <b-modal 
+        v-model="show"
+        title="Update Message"
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="updateMessage"
+      >
+        <div>
+          <b-form-input
+          id="name-input"
+          v-model="textMessage"
+          required
+          ref="message"
+        ></b-form-input>
+        </div>
+  
+      </b-modal>
     <!-- Login section -->
     <div class="col-8 offset-2" v-if="!name">
+  
       <b-card
         class="card-chat1"
         bg-variant="dark"
@@ -40,21 +58,7 @@
           </h5>
         </b-card-text>
       </b-card>
-      <b-modal
-        v-model="show"
-        title="Update Message"
-        @show="resetModal"
-        @hidden="resetModal"
-        @ok="updateMessage"
-      >
-      
-        <b-form-input
-          id="name-input"
-          v-model="textMessage"
-          required
-          ref="message"
-        ></b-form-input>
-      </b-modal>
+
       <div class="card">
         <div class="card-body">
           <div

@@ -15,6 +15,19 @@
         <div class="row ">
           <div class="card " >
             <div class="card-body ">
+              <div class="w-full">
+            <h5 class="card-title text-dark">File Upload And Download</h5>
+            <p class="card-text text-dark">Uploading and Downloading</p>
+            <button
+              type="button"
+              class="btn btn-info"
+              @click="redirectUpload"
+            >
+             Upload Files
+              <b-badge pill variant="success">new</b-badge>
+            </button>
+          </div>
+          <br>
          <div class="w-full">
             <h5 class="card-title text-dark">Chat message</h5>
             <p class="card-text text-dark">Message send to Your Friend</p>
@@ -132,6 +145,9 @@ export default {
     },
     redirectMessages() {
       this.$router.push({ path: "/messages" });
+    },
+    redirectUpload() {
+      this.$router.push({ path: "/upload" });
     },
     redirectTimer() {
       this.$router.push({ path: "/timer" });
