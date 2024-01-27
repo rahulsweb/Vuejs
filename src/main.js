@@ -109,7 +109,8 @@ yahoo(event); // https://calendar.yahoo.com/?v=60&title=...
 ics(event); // standard ICS file based on https://icalendar.org
 Vue.use(VueRouter)
 // 
-
+import ProgressBar from 'vuejs-progress-bar'
+Vue.use(ProgressBar)
 // import GoogleAuth from '@/config/google.js'
 // const gauthOption = {
 //   clientId: '404149809856-huhpm4nrkdalfiq9772ob01ftck9qa2g.apps.googleusercontent.com',
